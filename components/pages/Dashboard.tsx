@@ -174,7 +174,7 @@ export function Dashboard({ spaces, soldHistory }: DashboardProps) {
         <div className="px-6 py-6">
           <div>
             <h1 className="heading text-3xl leading-tight text-foreground">
-              {getGreeting()},<br />welcome back.
+              {getGreeting()}!
             </h1>
             <span className="inline-block mt-3 text-xs px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">
               {today}

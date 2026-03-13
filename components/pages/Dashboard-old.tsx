@@ -245,7 +245,7 @@ export function Dashboard({ spaces, soldHistory }: DashboardProps) {
         <div className="px-6 py-6">
           <div>
             <h1 className="heading text-3xl leading-tight" style={{ color: '#24323A' }}>
-              {greeting()},<br />welcome back.
+              {greeting()}!
             </h1>
             <span
               className="inline-block mt-3 text-xs px-3 py-1.5 rounded-full text-white"
