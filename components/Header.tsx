@@ -77,7 +77,7 @@ export function Header() {
         </nav>
 
         {/* Import Section */}
-        <div className="p-3 border-t border-white/15">
+        <div className="p-3">
           <Link
             href="/import"
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors text-white/85 hover:bg-white/10"
