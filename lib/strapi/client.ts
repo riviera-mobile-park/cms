@@ -304,6 +304,23 @@ export async function getSpaceById(id: string): Promise<Space> {
   return toSpace(payload.data, config);
 }
 
+export async function createSpace(
+  space: Omit<Space, 'id'>,
+): Promise<Space> {
+  const config = getConfig();
+  const data = spaceToStrapiData(space, config.imageKeysField);
+
+  const payload = await strapiRequest<StrapiRestResponse<unknown>>(
+    `/api/${config.spacesCollection}`,
+    {
+      method: 'POST',
+      body: JSON.stringify({ data }),
+    },
+  );
+
+  return toSpace(payload.data, config);
+}
+
 export async function updateSpace(
   id: string,
   patch: Partial<Space>,

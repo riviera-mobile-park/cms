@@ -11,10 +11,19 @@ import { toast } from 'sonner';
 import { toErrorMessage } from '@/lib/utils/error';
 
 export default function SpacesPage() {
-  const { spaces, updateSpace, setSpace } = useSpaces('all');
+  const { spaces, createSpace, updateSpace, setSpace } = useSpaces('all');
 
-  const handleUpdateSpace = async (updatedSpace: Space) => {
-    await updateSpace(updatedSpace);
+  const handleSaveSpace = async (space: Space) => {
+    // Check if it's a new space (temp ID) or existing space
+    const isNewSpace = space.id.startsWith('local-') || space.id.startsWith('temp-');
+    
+    if (isNewSpace) {
+      // Remove the temp ID before creating
+      const { id, ...spaceWithoutId } = space;
+      await createSpace(spaceWithoutId);
+    } else {
+      await updateSpace(space);
+    }
   };
 
   const handleToggleForSale = async (id: string, value: boolean) => {
@@ -46,7 +55,7 @@ export default function SpacesPage() {
   return (
     <Spaces
       spaces={spaces}
-      onUpdateSpace={handleUpdateSpace}
+      onSaveSpace={handleSaveSpace}
       onToggleForSale={handleToggleForSale}
       onToggleByRmhp={handleToggleByRmhp}
     />

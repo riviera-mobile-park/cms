@@ -14,12 +14,12 @@ import { Button } from '@/components/ui/button';
 
 interface SpacesProps {
   spaces: Space[];
-  onUpdateSpace: (space: Space) => void;
+  onSaveSpace: (space: Space) => void;
   onToggleForSale: (id: string, value: boolean) => void;
   onToggleByRmhp: (id: string, value: boolean) => void;
 }
 
-export function Spaces({ spaces, onUpdateSpace, onToggleForSale, onToggleByRmhp }: SpacesProps) {
+export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }: SpacesProps) {
   const [editingSpace, setEditingSpace] = useState<Space | null>(null);
   const [previewingSpace, setPreviewingSpace] = useState<Space | null>(null);
 
@@ -105,7 +105,7 @@ export function Spaces({ spaces, onUpdateSpace, onToggleForSale, onToggleByRmhp 
         space={editingSpace}
         isOpen={!!editingSpace}
         onClose={() => setEditingSpace(null)}
-        onSave={onUpdateSpace}
+        onSave={onSaveSpace}
       />
 
       {/* Preview Modal */}

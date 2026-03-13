@@ -66,6 +66,26 @@ export async function fetchSpaces(scope: SpaceScope = 'all'): Promise<Space[]> {
 }
 
 /**
+ * Create a new space.
+ * @param space - Space data (without ID)
+ * @returns Created space record with ID from server
+ */
+export async function createSpace(
+  space: Omit<Space, 'id'>,
+): Promise<Space> {
+  const response = await fetch('/api/spaces', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ space }),
+  });
+
+  const payload = await parseResponse<SpaceResponse>(response);
+  return payload.space;
+}
+
+/**
  * Update a space with partial data.
  * @param id - Space ID
  * @param space - Partial space data to update

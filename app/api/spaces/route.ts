@@ -1,12 +1,14 @@
 // route.ts (spaces)
-// GET endpoint for fetching spaces with optional caching
+// GET and POST endpoints for fetching and creating spaces
 
 import { NextRequest, NextResponse } from 'next/server';
-import { getSpaces, SpaceScope, StrapiConfigError } from '@/lib/strapi/client';
+import { getSpaces, createSpace, SpaceScope, StrapiConfigError } from '@/lib/strapi/client';
+import { Space } from '@/data/spaces';
 import {
   getCachedSpaces,
   isUpstashCacheConfigured,
   setCachedSpaces,
+  invalidateSpacesCache,
 } from '@/lib/server/upstashCache';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -57,6 +59,29 @@ export async function GET(request: NextRequest) {
       { spaces, cached: false },
       { headers: { 'x-cache': 'MISS' } },
     );
+  } catch (error) {
+    return NextResponse.json({ error: toErrorMessage(error) }, { status: 500 });
+  }
+}
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { space } = body as { space: Omit<Space, 'id'> };
+
+    if (!space) {
+      return NextResponse.json({ error: 'Missing space data' }, { status: 400 });
+    }
+
+    // Create space in Strapi
+    const created = await createSpace(space);
+
+    // Invalidate cache if Upstash is configured
+    if (isUpstashCacheConfigured()) {
+      await invalidateSpacesCache();
+    }
+
+    return NextResponse.json({ space: created }, { status: 201 });
   } catch (error) {
     return NextResponse.json({ error: toErrorMessage(error) }, { status: 500 });
   }
