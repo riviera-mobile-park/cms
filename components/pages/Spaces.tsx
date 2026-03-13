@@ -4,11 +4,13 @@
 'use client';
 
 import { useState } from 'react';
+import { Plus } from 'lucide-react';
 import { Space } from '@/data/spaces';
 import { SpaceCard } from '@/components/SpaceCard';
 import { SpaceTable } from '@/components/SpaceTable';
 import { EditSpaceModal } from '@/components/EditSpaceModal';
 import { SpacePreviewModal } from '@/components/SpacePreviewModal';
+import { Button } from '@/components/ui/button';
 
 interface SpacesProps {
   spaces: Space[];
@@ -29,13 +31,46 @@ export function Spaces({ spaces, onUpdateSpace, onToggleForSale, onToggleByRmhp 
     return aNum - bNum;
   });
 
+  const handleAddHome = () => {
+    // Create a new empty space
+    const newSpace: Space = {
+      id: `temp-${Date.now()}`,
+      spaceNumber: '',
+      status: 'Available',
+      lotSize: '',
+      homeSize: '',
+      pricePerMonth: 0,
+      salePrice: undefined,
+      bedrooms: 0,
+      bathrooms: 0,
+      storage: false,
+      parkingType: 'Street Parking',
+      parkingSpaces: undefined,
+      aboutHome: '',
+      forSale: false,
+      byRmhp: false,
+      images: [],
+    };
+    setEditingSpace(newSpace);
+  };
+
   return (
     <div className="space-y-4">
-      <div>
-        <h1 className="heading text-3xl mb-1" style={{ color: '#24323A' }}>All Spaces</h1>
-        <p className="text-sm" style={{ color: '#2F6F8F' }}>
-          Manage all mobile home spaces at Riviera Mobile Home Park
-        </p>
+      <div className="flex items-start justify-between">
+        <div>
+          <h1 className="heading text-3xl mb-1" style={{ color: '#24323A' }}>All Spaces</h1>
+          <p className="text-sm" style={{ color: '#2F6F8F' }}>
+            Manage all mobile home spaces at Riviera Mobile Home Park
+          </p>
+        </div>
+        <Button 
+          onClick={handleAddHome}
+          className="gap-2"
+          style={{ background: '#2F6F8F' }}
+        >
+          <Plus className="h-4 w-4" />
+          Add Home
+        </Button>
       </div>
 
       {/* Desktop Table View */}
