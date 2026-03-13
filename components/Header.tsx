@@ -4,7 +4,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Home, Tag, Building2, Upload, ChevronRight, LayoutDashboard, LogOut, Database } from 'lucide-react';
+import { Menu, X, Home, Tag, Building2, Upload, ChevronRight, LayoutDashboard, LogOut, FileSpreadsheet } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
@@ -82,7 +82,7 @@ export function Header() {
             href="/import"
             className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors text-white/85 hover:bg-white/10"
           >
-            <Database className="w-4 h-4 flex-shrink-0" />
+            <FileSpreadsheet className="w-4 h-4 flex-shrink-0" />
             <span className="text-sm">Import</span>
           </Link>
         </div>
@@ -213,7 +213,7 @@ export function Header() {
                   className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors text-foreground hover:bg-muted"
                 >
                   <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-muted">
-                    <Database className="w-3.5 h-3.5 text-secondary" />
+                    <FileSpreadsheet className="w-3.5 h-3.5 text-secondary" />
                   </div>
                   <span className="text-sm">Import</span>
                 </Link>

@@ -82,20 +82,20 @@ function parseCsv(text: string): ImportRow[] {
     };
 
     return {
-      spaceNumber: String(getField(['spaceNumber', 'space_number', 'Space Number', 'Space']) || '').trim(),
+      spaceNumber: String(getField(['space-number', 'spaceNumber', 'space_number', 'Space Number', 'Space']) || '').trim(),
       status: getField(['status', 'Status']),
-      lotSize: getField(['lotSize', 'lot_size', 'Lot Size']),
-      homeSize: getField(['homeSize', 'home_size', 'Home Size']),
-      pricePerMonth: getField(['pricePerMonth', 'price_per_month', 'Price Per Month', 'rent']),
-      salePrice: getField(['salePrice', 'sale_price', 'Sale Price', 'price']),
+      lotSize: getField(['lot-size', 'lotSize', 'lot_size', 'Lot Size']),
+      homeSize: getField(['home-size', 'homeSize', 'home_size', 'Home Size']),
+      pricePerMonth: getField(['price-per-month', 'pricePerMonth', 'price_per_month', 'Price Per Month', 'rent']),
+      salePrice: getField(['sale-price', 'salePrice', 'sale_price', 'Sale Price', 'price']),
       bedrooms: getField(['bedrooms', 'Bedrooms', 'beds']),
       bathrooms: getField(['bathrooms', 'Bathrooms', 'baths']),
       storage: getField(['storage', 'Storage']),
-      parkingType: getField(['parkingType', 'parking_type', 'Parking Type', 'parking']),
-      parkingSpaces: getField(['parkingSpaces', 'parking_spaces', 'Parking Spaces']),
-      aboutHome: getField(['aboutHome', 'about_home', 'About Home', 'description', 'Description']),
-      forSale: getField(['forSale', 'for_sale', 'For Sale', 'forsale']),
-      byRmhp: getField(['byRmhp', 'by_rmhp', 'By RMHP', 'rmhp', 'RMHP']),
+      parkingType: getField(['parking-type', 'parkingType', 'parking_type', 'Parking Type', 'parking']),
+      parkingSpaces: getField(['parking-spaces', 'parkingSpaces', 'parking_spaces', 'Parking Spaces']),
+      aboutHome: getField(['about-home', 'aboutHome', 'about_home', 'About Home', 'description', 'Description']),
+      forSale: getField(['for-sale', 'forSale', 'for_sale', 'For Sale', 'forsale']),
+      byRmhp: getField(['by-rmhp', 'byRmhp', 'by_rmhp', 'By RMHP', 'rmhp', 'RMHP']),
     };
   });
 }
