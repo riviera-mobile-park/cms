@@ -16,7 +16,7 @@ export function HomesForSale({ spaces, onUpdateSpace }: HomesForSaleProps) {
   const [editingSpace, setEditingSpace] = useState<Space | null>(null);
   const [previewingSpace, setPreviewingSpace] = useState<Space | null>(null);
 
-  const forSaleSpaces = spaces.filter((space) => space.forSale);
+  const forSaleSpaces = spaces.filter((space) => space.forSale && !space.byRmhp);
 
   return (
     <div className="space-y-4">
@@ -31,7 +31,7 @@ export function HomesForSale({ spaces, onUpdateSpace }: HomesForSaleProps) {
         <div className="bg-white rounded-xl p-8 text-center" style={{ border: '1px solid #D7E3E7', boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}>
           <p className="text-base" style={{ color: '#2F6F8F' }}>No homes currently for sale</p>
           <p className="text-sm mt-1" style={{ color: '#2F6F8F' }}>
-            Check the "For Sale" checkbox in the Spaces section to list homes here
+            Check "For Sale" and leave "RMHP" unchecked in Spaces to list homes here
           </p>
         </div>
       ) : (
