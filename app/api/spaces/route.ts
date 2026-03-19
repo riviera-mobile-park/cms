@@ -3,7 +3,7 @@
 
 import { NextRequest, NextResponse } from 'next/server';
 import { getSpaces, createSpace, SpaceScope, StrapiConfigError } from '@/lib/strapi/client';
-import { Space } from '@/data/spaces';
+import { Space, mockSpaces } from '@/data/spaces';
 import {
   getCachedSpaces,
   isUpstashCacheConfigured,
@@ -30,6 +30,22 @@ function toErrorMessage(error: unknown): string {
     return error.message;
   }
   return 'Unknown server error';
+}
+
+/**
+ * Filter mock spaces based on scope.
+ */
+function filterMockSpaces(scope: SpaceScope): Space[] {
+  if (scope === 'all') {
+    return mockSpaces;
+  }
+  if (scope === 'for-sale') {
+    return mockSpaces.filter((s) => s.forSale);
+  }
+  if (scope === 'rmhp-owned') {
+    return mockSpaces.filter((s) => s.forSale && s.byRmhp);
+  }
+  return mockSpaces;
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -60,7 +76,13 @@ export async function GET(request: NextRequest) {
       { headers: { 'x-cache': 'MISS' } },
     );
   } catch (error) {
-    return NextResponse.json({ error: toErrorMessage(error) }, { status: 500 });
+    // Fallback to mock spaces if Strapi is not configured or fails
+    console.warn('Strapi unavailable, using mock data:', toErrorMessage(error));
+    const spaces = filterMockSpaces(scope);
+    return NextResponse.json(
+      { spaces, mock: true },
+      { headers: { 'x-data-source': 'mock' } },
+    );
   }
 }
 
