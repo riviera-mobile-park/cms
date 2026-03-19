@@ -35,10 +35,20 @@ export interface SoldRecord {
 // Mock Data
 // ─────────────────────────────────────────────────────────────────────────────
 
+const MOBILE_HOME_IMAGES = [
+  'https://upload.wikimedia.org/wikipedia/commons/f/f5/Mobile_home_park.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/8/85/Mobile_home_with_garage.jpg',
+  'https://upload.wikimedia.org/wikipedia/commons/2/2b/Luxury_Camping_with_Mobile_Homes_and_verandas%2C_Cavallino_Treporti%2C_Veneto%2C_Italy.jpg',
+];
+
 const makeImgs = (id: string, count: number): string[] =>
-  Array.from({ length: count }, (_, i) =>
-    `https://picsum.photos/seed/rmhp-${id}-${i}/600/400`
-  );
+  Array.from({ length: count }, (_, i) => {
+    const imageIndex = (Number(id) + i) % MOBILE_HOME_IMAGES.length;
+    return MOBILE_HOME_IMAGES[imageIndex];
+  });
+
+const soldImg = (index: number): string =>
+  MOBILE_HOME_IMAGES[index % MOBILE_HOME_IMAGES.length];
 
 export const mockSpaces: Space[] = [
   {
@@ -193,12 +203,7 @@ export const mockSpaces: Space[] = [
     aboutHome: 'Beautiful manufactured home with vaulted ceilings, modern kitchen with island, master suite with walk-in closet. Recently updated with new flooring and fresh paint throughout. Spacious deck perfect for entertaining.',
     forSale: true,
     byRmhp: true,
-    images: [
-      'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=400&fit=crop',
-    ],
+    images: makeImgs('9', 4),
   },
   {
     id: '10',
@@ -215,11 +220,7 @@ export const mockSpaces: Space[] = [
     aboutHome: 'Charming double-wide mobile home with open floor plan. Features include updated appliances, cozy fireplace, and large windows for natural light. Fenced yard with mature landscaping and storage shed.',
     forSale: true,
     byRmhp: false,
-    images: [
-      'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=600&h=400&fit=crop',
-      'https://images.unsplash.com/photo-1600607687644-c7171b42498b?w=600&h=400&fit=crop',
-    ],
+    images: makeImgs('10', 3),
   },
 ];
 
@@ -233,7 +234,7 @@ export const soldHistory: SoldRecord[] = [
     bedrooms: 2,
     bathrooms: 1,
     lotSize: '38x78',
-    image: 'https://picsum.photos/seed/sold-s1/600/400',
+    image: soldImg(0),
   },
   {
     id: 's2',
@@ -243,7 +244,7 @@ export const soldHistory: SoldRecord[] = [
     bedrooms: 3,
     bathrooms: 2,
     lotSize: '44x84',
-    image: 'https://picsum.photos/seed/sold-s2/600/400',
+    image: soldImg(1),
   },
   {
     id: 's3',
@@ -253,7 +254,7 @@ export const soldHistory: SoldRecord[] = [
     bedrooms: 2,
     bathrooms: 1,
     lotSize: '36x76',
-    image: 'https://picsum.photos/seed/sold-s3/600/400',
+    image: soldImg(2),
   },
   {
     id: 's4',
@@ -263,7 +264,7 @@ export const soldHistory: SoldRecord[] = [
     bedrooms: 3,
     bathrooms: 2,
     lotSize: '46x86',
-    image: 'https://picsum.photos/seed/sold-s4/600/400',
+    image: soldImg(3),
   },
   {
     id: 's5',
@@ -273,7 +274,7 @@ export const soldHistory: SoldRecord[] = [
     bedrooms: 2,
     bathrooms: 1,
     lotSize: '39x79',
-    image: 'https://picsum.photos/seed/sold-s5/600/400',
+    image: soldImg(4),
   },
   {
     id: 's6',
@@ -283,7 +284,7 @@ export const soldHistory: SoldRecord[] = [
     bedrooms: 2,
     bathrooms: 2,
     lotSize: '40x80',
-    image: 'https://picsum.photos/seed/sold-s6/600/400',
+    image: soldImg(5),
   },
   {
     id: 's7',
@@ -293,7 +294,7 @@ export const soldHistory: SoldRecord[] = [
     bedrooms: 3,
     bathrooms: 1,
     lotSize: '42x82',
-    image: 'https://picsum.photos/seed/sold-s7/600/400',
+    image: soldImg(6),
   },
   {
     id: 's8',
@@ -303,6 +304,6 @@ export const soldHistory: SoldRecord[] = [
     bedrooms: 2,
     bathrooms: 1,
     lotSize: '37x77',
-    image: 'https://picsum.photos/seed/sold-s8/600/400',
+    image: soldImg(7),
   },
 ];
