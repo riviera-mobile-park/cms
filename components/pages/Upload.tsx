@@ -1,5 +1,5 @@
 // Upload.tsx
-// Image upload page with drag-and-drop
+// Image upload page with drag-and-drop + photo management
 
 'use client';
 
@@ -7,13 +7,15 @@ import { useRef, useState } from 'react';
 import { Upload as UploadIcon } from 'lucide-react';
 import { Space } from '@/data/spaces';
 import { ImageAssignmentModal } from '@/components/ImageAssignmentModal';
+import { HomePhotosSection } from '@/components/HomePhotosSection';
 
 interface UploadProps {
   spaces: Space[];
   onImagesAssigned: (spaceId: string, images: File[]) => Promise<void> | void;
+  onDeleteImage: (spaceId: string, imageUrl: string) => Promise<void> | void;
 }
 
-export function Upload({ spaces, onImagesAssigned }: UploadProps) {
+export function Upload({ spaces, onImagesAssigned, onDeleteImage }: UploadProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isAssigning, setIsAssigning] = useState(false);
@@ -58,13 +60,18 @@ export function Upload({ spaces, onImagesAssigned }: UploadProps) {
   };
 
   return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="heading text-3xl mb-1" style={{ color: '#24323A' }}>Upload Images</h1>
-        <p className="text-sm" style={{ color: '#2F6F8F' }}>
-          Upload and assign property images to mobile home spaces
-        </p>
-      </div>
+    <div className="space-y-8">
+      {/* Home Photos Management Section */}
+      <HomePhotosSection spaces={spaces} onDeleteImage={onDeleteImage} />
+
+      {/* Upload Section */}
+      <div className="space-y-6">
+        <div>
+          <h1 className="heading text-3xl mb-1" style={{ color: '#24323A' }}>Upload Images</h1>
+          <p className="text-sm" style={{ color: '#2F6F8F' }}>
+            Upload and assign property images to mobile home spaces
+          </p>
+        </div>
 
       {/* Upload Drop Zone */}
       <div
@@ -110,14 +117,15 @@ export function Upload({ spaces, onImagesAssigned }: UploadProps) {
           type="file"
           accept="image/png,image/jpeg,image/webp"
           multiple
-          onChange={handleFileSelect}
-          className="hidden"
+        {/* Image Assignment Modal */}
+        <ImageAssignmentModal
+          images={selectedFiles}
+          spaces={spaces}
+          isOpen={isAssigning}
+          onClose={closeModal}
+          onFinish={handleFinish}
         />
-      </div>
-
-      {/* Image Assignment Modal */}
-      <ImageAssignmentModal
-        images={selectedFiles}
+      </div images={selectedFiles}
         spaces={spaces}
         isOpen={isAssigning}
         onClose={closeModal}

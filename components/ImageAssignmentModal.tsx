@@ -234,10 +234,7 @@ export function ImageAssignmentModal({
                     <button
                       onClick={handleConfirmDiscard}
                       disabled={isSubmitting}
-                      className="flex-1 px-4 py-2.5 rounded-xl text-sm transition-colors"
-                      style={{ border: '1px solid #D7E3E7', color: '#2F6F8F', background: 'white' }}
-                      onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#E8F6F3')}
-                      onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'white')}
+                      className="btn-cancel flex-1 text-sm"
                     >
                       Discard
                     </button>
@@ -248,10 +245,7 @@ export function ImageAssignmentModal({
                   <button
                     onClick={handleClose}
                     disabled={isSubmitting}
-                    className="flex-1 px-4 py-3 rounded-xl transition-colors"
-                    style={{ border: '1px solid #D7E3E7', color: '#24323A', background: 'white' }}
-                    onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#E8F6F3')}
-                    onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'white')}
+                    className="btn-cancel flex-1"
                   >
                     Cancel
                   </button>

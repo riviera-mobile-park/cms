@@ -149,3 +149,25 @@
     line-height: 1.2;
   }
 }
+
+@layer components {
+  .btn-cancel {
+    border: 1px solid #D7E3E7;
+    background: #FFFFFF;
+    color: #24323A;
+    border-radius: 0.75rem;
+    padding: 0.75rem 1rem;
+    transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+  }
+
+  .btn-cancel:hover:not(:disabled) {
+    background: #d4183d;
+    border-color: #d4183d;
+    color: #ffffff;
+  }
+
+  .btn-cancel:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

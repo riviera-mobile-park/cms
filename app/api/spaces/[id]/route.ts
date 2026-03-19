@@ -1,9 +1,9 @@
 // route.ts (spaces/[id])
-// PATCH endpoint for updating individual spaces
+// GET and PATCH endpoints for individual spaces
 
 import { NextRequest, NextResponse } from 'next/server';
-import { StrapiConfigError, updateSpace } from '@/lib/strapi/client';
-import { Space } from '@/data/spaces';
+import { StrapiConfigError, updateSpace, getSpaceById } from '@/lib/strapi/client';
+import { Space, mockSpaces } from '@/data/spaces';
 import { invalidateSpacesCache } from '@/lib/server/upstashCache';
 
 // ─────────────────────────────────────────────────────────────────────────────
@@ -21,8 +21,30 @@ function toErrorMessage(error: unknown): string {
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
-// Route Handler
+// Route Handlers
 // ─────────────────────────────────────────────────────────────────────────────
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  try {
+    const { id } = await params;
+    const space = await getSpaceById(id);
+    return NextResponse.json({ space });
+  } catch (error) {
+    // Fallback to mock data if Strapi is not configured or fails
+    console.warn('Strapi unavailable, using mock data:', toErrorMessage(error));
+    const { id } = await params;
+    const space = mockSpaces.find((s) => s.id === id);
+    
+    if (!space) {
+      return NextResponse.json({ error: 'Space not found' }, { status: 404 });
+    }
+    
+    return NextResponse.json({ space, mock: true }, { headers: { 'x-data-source': 'mock' } });
+  }
+}
 
 export async function PATCH(
   request: NextRequest,

@@ -131,3 +131,25 @@ export async function appendSpaceImages(
   const payload = await parseResponse<SpaceResponse>(response);
   return payload.space;
 }
+
+/**
+ * Remove a specific image URL from a space's images array.
+ * @param id - Space ID
+ * @param imageUrl - Image URL to remove
+ * @returns Updated space record without the image
+ */
+export async function removeSpaceImage(
+  id: string,
+  imageUrl: string,
+): Promise<Space> {
+  // Fetch current space to get all images
+  const currentResponse = await fetch(`/api/spaces/${encodeURIComponent(id)}`);
+  const currentPayload = await parseResponse<SpaceResponse>(currentResponse);
+  const currentSpace = currentPayload.space;
+
+  // Filter out the image to delete
+  const updatedImages = (currentSpace.images || []).filter((img) => img !== imageUrl);
+
+  // Patch the space with updated images array
+  return patchSpace(id, { images: updatedImages });
+}
