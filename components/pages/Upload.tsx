@@ -117,20 +117,20 @@ export function Upload({ spaces, onImagesAssigned, onDeleteImage }: UploadProps)
           type="file"
           accept="image/png,image/jpeg,image/webp"
           multiple
-        {/* Image Assignment Modal */}
-        <ImageAssignmentModal
-          images={selectedFiles}
-          spaces={spaces}
-          isOpen={isAssigning}
-          onClose={closeModal}
-          onFinish={handleFinish}
+          onChange={handleFileSelect}
+          className="hidden"
         />
-      </div images={selectedFiles}
+      </div>
+
+      {/* Image Assignment Modal */}
+      <ImageAssignmentModal
+        images={selectedFiles}
         spaces={spaces}
         isOpen={isAssigning}
         onClose={closeModal}
         onFinish={handleFinish}
       />
+      </div>
     </div>
   );
 }
