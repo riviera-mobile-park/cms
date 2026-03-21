@@ -65,10 +65,10 @@ export function HomePhotosSection({ spaces, onDeleteImage }: HomePhotosSectionPr
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 md:space-y-6">
       {/* Section Header */}
       <div>
-        <h1 className="heading text-3xl mb-1" style={{ color: '#24323A' }}>
+        <h1 className="heading text-2xl md:text-3xl mb-1" style={{ color: '#24323A' }}>
           Home Photos
         </h1>
         <p className="text-sm" style={{ color: '#2F6F8F' }}>
@@ -79,8 +79,8 @@ export function HomePhotosSection({ spaces, onDeleteImage }: HomePhotosSectionPr
       {/* Main 2-Column Layout */}
       {spacesWithImages.length === 0 ? (
         <div
-          className="bg-white rounded-xl p-8 text-center"
-          style={{ border: '1px solid #D7E3E7', boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}
+          className="bg-white rounded-xl p-6 md:p-8 text-center"
+          style={{ border: '1px solid #D7E3E7', boxShadow: '0 4px 12px rgba(0,0,0,0.04)' }}
         >
           <ImageIcon className="w-12 h-12 mx-auto mb-3" style={{ color: '#D7E3E7' }} />
           <p className="text-base" style={{ color: '#2F6F8F' }}>
@@ -93,24 +93,24 @@ export function HomePhotosSection({ spaces, onDeleteImage }: HomePhotosSectionPr
       ) : (
         <div
           className="bg-white rounded-xl overflow-hidden flex flex-col lg:flex-row"
-          style={{ border: '1px solid #D7E3E7', boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}
+          style={{ border: '1px solid #D7E3E7', boxShadow: '0 4px 12px rgba(0,0,0,0.04)' }}
         >
           {/* LEFT COLUMN: Homes List */}
           <div
             className="w-full lg:w-60 border-b lg:border-b-0 lg:border-r"
             style={{ borderColor: '#D7E3E7', background: '#F7FAFB' }}
           >
-            <div className="p-4 border-b" style={{ borderColor: '#D7E3E7' }}>
+            <div className="p-3 md:p-4 border-b" style={{ borderColor: '#D7E3E7' }}>
               <h3 className="text-sm font-semibold" style={{ color: '#24323A' }}>
                 Homes ({spacesWithImages.length})
               </h3>
             </div>
-            <div className="overflow-y-auto max-h-[300px] lg:max-h-[600px]">
+            <div className="overflow-y-auto max-h-[200px] md:max-h-[300px] lg:max-h-[600px]">
               {spacesWithImages.map((space) => (
                 <button
                   key={space.id}
                   onClick={() => handleHomeSelect(space.id)}
-                  className="w-full text-left px-4 py-3 transition-colors border-b"
+                  className="w-full text-left px-3 md:px-4 py-2.5 md:py-3 transition-colors border-b"
                   style={{
                     background: selectedHomeId === space.id ? '#E8F6F3' : 'transparent',
                     borderColor: '#D7E3E7',
@@ -200,15 +200,15 @@ export function HomePhotosSection({ spaces, onDeleteImage }: HomePhotosSectionPr
                 </div>
 
                 {/* BOTTOM: Preview + Delete */}
-                <div className="flex-1 p-6">
+                <div className="flex-1 p-4 md:p-6">
                   {!selectedImageUrl ? (
-                    <div className="flex items-center justify-center h-full">
+                    <div className="flex items-center justify-center h-full min-h-[200px]">
                       <p className="text-sm" style={{ color: '#2F6F8F' }}>
                         Select an image to preview
                       </p>
                     </div>
                   ) : (
-                    <div className="space-y-4">
+                    <div className="space-y-3 md:space-y-4">
                       <h3 className="text-sm font-semibold" style={{ color: '#24323A' }}>
                         Preview
                       </h3>
@@ -219,7 +219,7 @@ export function HomePhotosSection({ spaces, onDeleteImage }: HomePhotosSectionPr
                         <OptimizedImage
                           imageKey={selectedImageUrl}
                           alt="Preview"
-                          className="w-full h-auto max-h-[400px] object-contain"
+                          className="w-full h-auto max-h-[300px] md:max-h-[400px] object-contain"
                         />
                       </div>
                       <button
