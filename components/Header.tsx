@@ -170,10 +170,10 @@ export function Header() {
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -8, scale: 0.98 }}
               transition={{ type: 'spring', damping: 28, stiffness: 340 }}
-              className="lg:hidden fixed top-[58px] right-4 w-64 rounded-xl overflow-hidden z-50 bg-background border border-border shadow-lg"
+              className="lg:hidden fixed top-[58px] right-4 w-64 rounded-xl overflow-hidden z-50 bg-sidebar shadow-lg"
             >
               {/* Panel Header */}
-              <div className="px-4 py-3 bg-sidebar">
+              <div className="px-4 py-3 bg-sidebar border-b border-white/15">
                 <p className="text-sm text-white leading-tight">Riviera Mobile Home Park</p>
               </div>
 
@@ -187,17 +187,17 @@ export function Header() {
                       href={item.to}
                       className={`
                         flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors
-                        ${active 
-                          ? 'bg-primary text-primary-foreground' 
-                          : 'text-foreground hover:bg-muted'
+                        ${active
+                          ? 'bg-primary text-primary-foreground'
+                          : 'text-white/85 hover:bg-white/10'
                         }
                       `}
                     >
                       <div className={`
                         w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0
-                        ${active ? 'bg-white/25' : 'bg-muted'}
+                        ${active ? 'bg-white/25' : 'bg-white/10'}
                       `}>
-                        <item.icon className={`w-3.5 h-3.5 ${active ? 'text-primary-foreground' : 'text-secondary'}`} />
+                        <item.icon className={`w-3.5 h-3.5 ${active ? 'text-primary-foreground' : 'text-white/85'}`} />
                       </div>
                       <span className="text-sm">{item.label}</span>
                       {active && <ChevronRight className="w-3.5 h-3.5 ml-auto opacity-70" />}
@@ -210,10 +210,10 @@ export function Header() {
               <div className="p-2 pt-0">
                 <Link
                   href="/import"
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors text-foreground hover:bg-muted"
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors text-white/85 hover:bg-white/10"
                 >
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-muted">
-                    <FileSpreadsheet className="w-3.5 h-3.5 text-secondary" />
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-white/10">
+                    <FileSpreadsheet className="w-3.5 h-3.5 text-white/85" />
                   </div>
                   <span className="text-sm">Import</span>
                 </Link>
@@ -223,18 +223,18 @@ export function Header() {
               <div className="p-2 pt-0">
                 <button
                   onClick={handleLogout}
-                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors text-foreground hover:bg-muted"
+                  className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-colors text-white/85 hover:bg-white/10"
                 >
-                  <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-muted">
-                    <LogOut className="w-3.5 h-3.5 text-secondary" />
+                  <div className="w-7 h-7 rounded-lg flex items-center justify-center flex-shrink-0 bg-white/10">
+                    <LogOut className="w-3.5 h-3.5 text-white/85" />
                   </div>
                   <span className="text-sm">Logout</span>
                 </button>
               </div>
 
               {/* Panel Footer */}
-              <div className="px-4 py-2.5 border-t border-border bg-muted/50">
-                <p className="text-[10px] text-center tracking-wide text-muted-foreground">
+              <div className="px-4 py-2.5 border-t border-white/15">
+                <p className="text-[10px] text-center tracking-wide text-white/50">
                   © 2026 Riviera Mobile Home Park
                 </p>
               </div>
