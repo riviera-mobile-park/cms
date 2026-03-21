@@ -73,8 +73,8 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
         </Button>
       </div>
 
-      {/* Desktop Table View */}
-      <div className="hidden lg:block bg-white rounded-xl overflow-hidden" style={{ border: '1px solid #D7E3E7', boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}>
+      {/* Table View */}
+      <div className="bg-white rounded-xl" style={{ border: '1px solid #D7E3E7', boxShadow: '0 4px 12px rgba(0,0,0,0.04)' }}>
         <SpaceTable
           spaces={sortedSpaces}
           onEdit={setEditingSpace}
@@ -85,8 +85,8 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
         />
       </div>
 
-      {/* Mobile Card View */}
-      <div className="lg:hidden space-y-2">
+      {/* Mobile Card View - only for xs screens */}
+      <div className="md:hidden space-y-2">
         {sortedSpaces.map((space) => (
           <SpaceCard
             key={space.id}

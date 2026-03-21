@@ -161,8 +161,8 @@ export function HomePhotosSection({ spaces, onDeleteImage }: HomePhotosSectionPr
             ) : (
               <>
                 {/* TOP: Thumbnails Grid */}
-                <div className="p-6 border-b" style={{ borderColor: '#D7E3E7' }}>
-                  <h3 className="text-sm font-semibold mb-3" style={{ color: '#24323A' }}>
+                <div className="p-4 md:p-6 border-b" style={{ borderColor: '#D7E3E7' }}>
+                  <h3 className="text-sm font-semibold mb-2 md:mb-3" style={{ color: '#24323A' }}>
                     Images ({selectedHomeImages.length})
                   </h3>
                   {selectedHomeImages.length === 0 ? (
@@ -170,15 +170,15 @@ export function HomePhotosSection({ spaces, onDeleteImage }: HomePhotosSectionPr
                       No images available
                     </p>
                   ) : (
-                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-4 xl:grid-cols-6 gap-2">
+                    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-4 xl:grid-cols-6 gap-1.5 md:gap-2">
                       {selectedHomeImages.map((imageUrl, idx) => (
                         <button
                           key={idx}
                           onClick={() => setSelectedImageUrl(imageUrl)}
                           className="relative aspect-square rounded-lg overflow-hidden transition-all"
                           style={{
-                            border: selectedImageUrl === imageUrl ? '3px solid #7FD1C2' : '1px solid #D7E3E7',
-                            boxShadow: selectedImageUrl === imageUrl ? '0 4px 12px rgba(127, 209, 194, 0.3)' : 'none',
+                            border: selectedImageUrl === imageUrl ? '2px solid #7FD1C2' : '1px solid #D7E3E7',
+                            boxShadow: selectedImageUrl === imageUrl ? '0 2px 8px rgba(127, 209, 194, 0.3)' : 'none',
                           }}
                         >
                           <OptimizedImage
@@ -187,10 +187,10 @@ export function HomePhotosSection({ spaces, onDeleteImage }: HomePhotosSectionPr
                             className="w-full h-full object-cover"
                           />
                           {selectedImageUrl === imageUrl && (
-                            <div className="absolute top-1 right-1 w-5 h-5 rounded-full flex items-center justify-center"
+                            <div className="absolute top-0.5 right-0.5 md:top-1 md:right-1 w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center"
                               style={{ background: '#7FD1C2' }}
                             >
-                              <Check className="w-3 h-3 text-white" />
+                              <Check className="w-2.5 h-2.5 md:w-3 md:h-3 text-white" />
                             </div>
                           )}
                         </button>

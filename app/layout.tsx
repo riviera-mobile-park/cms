@@ -27,12 +27,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+      </head>
+      <body className="flex flex-col min-h-screen">
         <Providers>
           <Header />
-          {/* Main content with responsive padding accounting for fixed header and sidebar */}
-          <main className="pt-[calc(3.5rem+12px)] lg:pt-6 lg:ml-60 px-4 py-6 sm:px-6 lg:px-12 xl:px-16">
-            {children}
+          {/* Main content with responsive padding and flexbox layout */}
+          <main className="flex-1 pt-[calc(3.5rem+12px)] lg:pt-6 lg:ml-60 px-4 py-6 sm:px-6 lg:px-8 xl:px-12 max-w-full">
+            <div className="flex flex-col w-full max-w-[1600px] mx-auto">
+              {children}
+            </div>
           </main>
           {/* Toast notifications positioned at top-right */}
           <Toaster position="top-right" />
