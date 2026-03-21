@@ -94,7 +94,7 @@ export function DeleteImageModal({ isOpen, onClose, onConfirm }: DeleteImageModa
               <div className="flex gap-3 p-6 border-t" style={{ borderColor: '#D7E3E7', background: '#F7FAFB' }}>
                 <button
                   onClick={onClose}
-                  className="btn-cancel flex-1"
+                  className="btn-cancel btn-cancel-green flex-1"
                 >
                   Cancel
                 </button>
