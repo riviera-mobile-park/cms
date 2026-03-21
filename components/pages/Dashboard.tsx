@@ -242,25 +242,23 @@ export function Dashboard({ spaces, soldHistory }: DashboardProps) {
                   <table className="w-full text-sm">
                     <thead>
                       <tr>
-                        {['Space', 'Price/mo', 'Home Size', 'Lot Size', 'Bed', 'Bath'].map(h => (
-                          <th 
-                            key={h} 
-                            className="px-3 py-2 text-left text-xs font-medium whitespace-nowrap text-secondary border-b border-border bg-muted/30"
-                          >
-                            {h}
-                          </th>
-                        ))}
+                        <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium whitespace-nowrap text-secondary border-b border-border bg-muted/30">#</th>
+                        <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium whitespace-nowrap text-secondary border-b border-border bg-muted/30">$/mo</th>
+                        <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium text-secondary border-b border-border bg-muted/30">Home</th>
+                        <th className="hidden lg:table-cell px-3 py-2 text-left text-xs font-medium whitespace-nowrap text-secondary border-b border-border bg-muted/30">Lot Size</th>
+                        <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium text-secondary border-b border-border bg-muted/30">Bd</th>
+                        <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium text-secondary border-b border-border bg-muted/30">Ba</th>
                       </tr>
                     </thead>
                     <tbody>
                       {rmhpForSale.map((s) => (
                         <tr key={s.id}>
-                          <td className="px-3 py-2 font-medium whitespace-nowrap text-foreground border-b border-border">{s.spaceNumber}</td>
-                          <td className="px-3 py-2 whitespace-nowrap text-foreground border-b border-border">${s.pricePerMonth}</td>
-                          <td className="px-3 py-2 whitespace-nowrap text-foreground border-b border-border">{s.homeSize}</td>
-                          <td className="px-3 py-2 whitespace-nowrap text-foreground border-b border-border">{s.lotSize}</td>
-                          <td className="px-3 py-2 text-foreground border-b border-border">{s.bedrooms}</td>
-                          <td className="px-3 py-2 text-foreground border-b border-border">{s.bathrooms}</td>
+                          <td className="px-1 py-2 lg:px-3 text-xs lg:text-sm font-medium whitespace-nowrap text-foreground border-b border-border">{s.spaceNumber}</td>
+                          <td className="px-1 py-2 lg:px-3 text-xs lg:text-sm whitespace-nowrap text-foreground border-b border-border">${s.pricePerMonth}</td>
+                          <td className="px-1 py-2 lg:px-3 text-xs lg:text-sm text-foreground border-b border-border">{s.homeSize}</td>
+                          <td className="hidden lg:table-cell px-3 py-2 text-sm whitespace-nowrap text-foreground border-b border-border">{s.lotSize}</td>
+                          <td className="px-1 py-2 lg:px-3 text-xs lg:text-sm text-foreground border-b border-border">{s.bedrooms}</td>
+                          <td className="px-1 py-2 lg:px-3 text-xs lg:text-sm text-foreground border-b border-border">{s.bathrooms}</td>
                         </tr>
                       ))}
                     </tbody>
@@ -271,10 +269,10 @@ export function Dashboard({ spaces, soldHistory }: DashboardProps) {
 
             {/* Vacant Lots Table */}
             <Card className="overflow-hidden">
-              <CardHeader 
-                icon={MapPin} 
-                title="Vacant Lots" 
-                badge={vacantLots.length} 
+              <CardHeader
+                icon={MapPin}
+                title="Vacant Lots"
+                badge={vacantLots.length}
               />
               {vacantLots.length === 0 ? (
                 <p className="px-4 py-6 text-sm text-center text-secondary">
@@ -285,25 +283,23 @@ export function Dashboard({ spaces, soldHistory }: DashboardProps) {
                   <table className="w-full text-sm">
                     <thead>
                       <tr>
-                        {['Space', 'Price/mo', 'Home Size', 'Lot Size', 'Bed', 'Bath'].map(h => (
-                          <th 
-                            key={h} 
-                            className="px-3 py-2 text-left text-xs font-medium whitespace-nowrap text-secondary border-b border-border bg-muted/30"
-                          >
-                            {h}
-                          </th>
-                        ))}
+                        <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium whitespace-nowrap text-secondary border-b border-border bg-muted/30">#</th>
+                        <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium whitespace-nowrap text-secondary border-b border-border bg-muted/30">$/mo</th>
+                        <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium text-secondary border-b border-border bg-muted/30">Home</th>
+                        <th className="hidden lg:table-cell px-3 py-2 text-left text-xs font-medium whitespace-nowrap text-secondary border-b border-border bg-muted/30">Lot Size</th>
+                        <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium text-secondary border-b border-border bg-muted/30">Bd</th>
+                        <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium text-secondary border-b border-border bg-muted/30">Ba</th>
                       </tr>
                     </thead>
                     <tbody>
                       {vacantLots.map((s) => (
                         <tr key={s.id}>
-                          <td className="px-3 py-2 font-medium whitespace-nowrap text-foreground border-b border-border">{s.spaceNumber}</td>
-                          <td className="px-3 py-2 whitespace-nowrap text-foreground border-b border-border">${s.pricePerMonth}</td>
-                          <td className="px-3 py-2 whitespace-nowrap text-foreground border-b border-border">{s.homeSize}</td>
-                          <td className="px-3 py-2 whitespace-nowrap text-foreground border-b border-border">{s.lotSize}</td>
-                          <td className="px-3 py-2 text-foreground border-b border-border">{s.bedrooms}</td>
-                          <td className="px-3 py-2 text-foreground border-b border-border">{s.bathrooms}</td>
+                          <td className="px-1 py-2 lg:px-3 text-xs lg:text-sm font-medium whitespace-nowrap text-foreground border-b border-border">{s.spaceNumber}</td>
+                          <td className="px-1 py-2 lg:px-3 text-xs lg:text-sm whitespace-nowrap text-foreground border-b border-border">${s.pricePerMonth}</td>
+                          <td className="px-1 py-2 lg:px-3 text-xs lg:text-sm text-foreground border-b border-border">{s.homeSize}</td>
+                          <td className="hidden lg:table-cell px-3 py-2 text-sm whitespace-nowrap text-foreground border-b border-border">{s.lotSize}</td>
+                          <td className="px-1 py-2 lg:px-3 text-xs lg:text-sm text-foreground border-b border-border">{s.bedrooms}</td>
+                          <td className="px-1 py-2 lg:px-3 text-xs lg:text-sm text-foreground border-b border-border">{s.bathrooms}</td>
                         </tr>
                       ))}
                     </tbody>
