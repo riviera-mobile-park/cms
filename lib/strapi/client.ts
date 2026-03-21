@@ -1,7 +1,8 @@
 // client.ts
 // Strapi CMS client for fetching/updating space data
+// Falls back to mock data when environment variables are not configured
 
-import { Space } from '@/data/spaces';
+import { Space, mockSpaces } from '@/data/spaces';
 
 export type SpaceScope = 'all' | 'for-sale' | 'rmhp-owned';
 
@@ -26,28 +27,40 @@ interface StrapiRestResponse<T> {
   data: T;
 }
 
-function getEnv(name: string): string {
-  const value = process.env[name]?.trim();
-  if (!value) {
-    throw new StrapiConfigError(`Missing required env var: ${name}`);
+// Check if Strapi is configured - returns null when using mock data
+function getConfig(): StrapiConfig | null {
+  const baseUrl = process.env.STRAPI_URL?.trim();
+  const token = process.env.STRAPI_API_TOKEN?.trim();
+  
+  // If either required env var is missing, use mock data
+  if (!baseUrl || !token) {
+    return null;
   }
-  return value;
-}
 
-function getConfig(): StrapiConfig {
-  const baseUrl = getEnv('STRAPI_URL').replace(/\/$/, '');
-  const token = getEnv('STRAPI_API_TOKEN');
   const spacesCollection =
     process.env.STRAPI_SPACES_COLLECTION?.trim() || DEFAULT_STRAPI_COLLECTION;
   const imageKeysField =
     process.env.STRAPI_IMAGE_KEYS_FIELD?.trim() || DEFAULT_IMAGE_KEYS_FIELD;
 
   return {
-    baseUrl,
+    baseUrl: baseUrl.replace(/\/$/, ''),
     token,
     spacesCollection,
     imageKeysField,
   };
+}
+
+// Filter mock spaces based on scope
+function filterMockSpaces(scope: SpaceScope): Space[] {
+  let filtered = mockSpaces;
+  
+  if (scope === 'for-sale') {
+    filtered = filtered.filter(s => s.forSale);
+  } else if (scope === 'rmhp-owned') {
+    filtered = filtered.filter(s => s.forSale && s.byRmhp);
+  }
+  
+  return filtered;
 }
 
 function buildSpacesQuery(scope: SpaceScope): string {
@@ -68,9 +81,9 @@ function buildSpacesQuery(scope: SpaceScope): string {
 
 async function strapiRequest<T>(
   path: string,
+  config: StrapiConfig,
   init?: RequestInit,
 ): Promise<T> {
-  const config = getConfig();
   const headers = new Headers(init?.headers);
   headers.set('Authorization', `Bearer ${config.token}`);
 
@@ -281,10 +294,17 @@ function spaceToStrapiData(
 
 export async function getSpaces(scope: SpaceScope = 'all'): Promise<Space[]> {
   const config = getConfig();
+  
+  // Use mock data if Strapi is not configured
+  if (!config) {
+    return filterMockSpaces(scope);
+  }
+
   const query = buildSpacesQuery(scope);
 
   const payload = await strapiRequest<StrapiRestResponse<unknown[]>>(
     `/api/${config.spacesCollection}?${query}`,
+    config,
   );
 
   if (!Array.isArray(payload.data)) {
@@ -296,9 +316,19 @@ export async function getSpaces(scope: SpaceScope = 'all'): Promise<Space[]> {
 
 export async function getSpaceById(id: string): Promise<Space> {
   const config = getConfig();
+  
+  // Use mock data if Strapi is not configured
+  if (!config) {
+    const space = mockSpaces.find(s => s.id === id);
+    if (!space) {
+      throw new Error(`Space not found: ${id}`);
+    }
+    return space;
+  }
 
   const payload = await strapiRequest<StrapiRestResponse<unknown>>(
     `/api/${config.spacesCollection}/${encodeURIComponent(id)}?populate=*`,
+    config,
   );
 
   return toSpace(payload.data, config);
@@ -308,10 +338,22 @@ export async function createSpace(
   space: Omit<Space, 'id'>,
 ): Promise<Space> {
   const config = getConfig();
+  
+  // Mock data mode - just return the space with a generated ID
+  if (!config) {
+    const newSpace: Space = {
+      ...space,
+      id: String(Date.now()),
+    };
+    mockSpaces.push(newSpace);
+    return newSpace;
+  }
+
   const data = spaceToStrapiData(space, config.imageKeysField);
 
   const payload = await strapiRequest<StrapiRestResponse<unknown>>(
     `/api/${config.spacesCollection}`,
+    config,
     {
       method: 'POST',
       body: JSON.stringify({ data }),
@@ -326,10 +368,22 @@ export async function updateSpace(
   patch: Partial<Space>,
 ): Promise<Space> {
   const config = getConfig();
+  
+  // Mock data mode - update in-memory
+  if (!config) {
+    const index = mockSpaces.findIndex(s => s.id === id);
+    if (index === -1) {
+      throw new Error(`Space not found: ${id}`);
+    }
+    mockSpaces[index] = { ...mockSpaces[index], ...patch };
+    return mockSpaces[index];
+  }
+
   const data = spaceToStrapiData(patch, config.imageKeysField);
 
   const payload = await strapiRequest<StrapiRestResponse<unknown>>(
     `/api/${config.spacesCollection}/${encodeURIComponent(id)}`,
+    config,
     {
       method: 'PUT',
       body: JSON.stringify({ data }),
