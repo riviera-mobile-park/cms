@@ -33,20 +33,20 @@ export function SpaceTable({
         <thead>
           <tr className="border-b border-border">
             {showCheckboxes && (
-              <th className="text-left px-3 py-2.5 text-xs font-medium text-secondary">
-                For Sale / RMHP
+              <th className="text-left px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary whitespace-nowrap">
+                Sale / RMHP
               </th>
             )}
-            <th className="text-left px-3 py-2.5 text-xs font-medium text-secondary">Space</th>
-            <th className="text-left px-3 py-2.5 text-xs font-medium text-secondary">Listed</th>
-            <th className="text-left px-3 py-2.5 text-xs font-medium text-secondary">Price/Month</th>
-            <th className="text-left px-3 py-2.5 text-xs font-medium text-secondary">Home Size</th>
-            <th className="text-left px-3 py-2.5 text-xs font-medium text-secondary">Lot Size</th>
-            <th className="text-left px-3 py-2.5 text-xs font-medium text-secondary">Bed</th>
-            <th className="text-left px-3 py-2.5 text-xs font-medium text-secondary">Bath</th>
-            <th className="text-left px-3 py-2.5 text-xs font-medium text-secondary">Storage</th>
-            <th className="text-left px-3 py-2.5 text-xs font-medium text-secondary">Parking</th>
-            <th className="text-right px-3 py-2.5 text-xs font-medium text-secondary">Actions</th>
+            <th className="text-left px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary">#</th>
+            <th className="text-left px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary">Listed</th>
+            <th className="text-left px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary whitespace-nowrap">$/mo</th>
+            <th className="text-left px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary whitespace-nowrap">Home</th>
+            <th className="text-left px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary whitespace-nowrap">Lot</th>
+            <th className="text-left px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary">Bd</th>
+            <th className="text-left px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary">Ba</th>
+            <th className="text-left px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary">Stor</th>
+            <th className="text-left px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary">Park</th>
+            <th className="text-right px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs font-medium text-secondary"></th>
           </tr>
         </thead>
         <tbody>
@@ -57,9 +57,9 @@ export function SpaceTable({
               onClick={() => onPreview?.(space)}
             >
               {showCheckboxes && (
-                <td className="px-3 py-2.5" onClick={(e) => e.stopPropagation()}>
-                  <div className="flex items-center gap-3">
-                    <div className="flex items-center gap-1">
+                <td className="px-1.5 py-2 sm:px-3 sm:py-2.5" onClick={(e) => e.stopPropagation()}>
+                  <div className="flex items-center gap-1.5 sm:gap-3">
+                    <div className="flex items-center gap-0.5 sm:gap-1">
                       <Checkbox
                         checked={space.forSale}
                         onCheckedChange={(checked) =>
@@ -69,12 +69,12 @@ export function SpaceTable({
                       />
                       <label
                         htmlFor={`table-for-sale-${space.id}`}
-                        className="text-[10px] cursor-pointer whitespace-nowrap text-secondary"
+                        className="text-[9px] sm:text-[10px] cursor-pointer whitespace-nowrap text-secondary"
                       >
-                        For Sale
+                        Sale
                       </label>
                     </div>
-                    <div className="flex items-center gap-1">
+                    <div className="flex items-center gap-0.5 sm:gap-1">
                       <Checkbox
                         checked={space.byRmhp}
                         onCheckedChange={(checked) =>
@@ -85,7 +85,7 @@ export function SpaceTable({
                       />
                       <label
                         htmlFor={`table-by-rmhp-${space.id}`}
-                        className="text-[10px] cursor-pointer whitespace-nowrap text-secondary"
+                        className="text-[9px] sm:text-[10px] cursor-pointer whitespace-nowrap text-secondary"
                       >
                         RMHP
                       </label>
@@ -93,45 +93,45 @@ export function SpaceTable({
                   </div>
                 </td>
               )}
-              <td className="px-3 py-2.5">
-                <span className="text-sm font-medium text-foreground">{space.spaceNumber}</span>
+              <td className="px-1.5 py-2 sm:px-3 sm:py-2.5">
+                <span className="text-xs sm:text-sm font-medium text-foreground">{space.spaceNumber}</span>
               </td>
-              <td className="px-3 py-2.5">
-                <div className="flex items-center gap-1 flex-nowrap">
+              <td className="px-1.5 py-2 sm:px-3 sm:py-2.5">
+                <div className="flex items-center gap-0.5 flex-nowrap">
                   {space.forSale && (
-                    <Badge className="text-xs px-2 py-0.5 whitespace-nowrap bg-primary text-sidebar-accent border-none">For Sale</Badge>
+                    <Badge className="text-[9px] sm:text-xs px-1 sm:px-2 py-0 sm:py-0.5 whitespace-nowrap bg-primary text-sidebar-accent border-none">Sale</Badge>
                   )}
                   {showRmhpBadge && space.byRmhp && (
-                    <Badge className="text-xs px-2 py-0.5 text-white whitespace-nowrap bg-sidebar-accent border-none">
+                    <Badge className="text-[9px] sm:text-xs px-1 sm:px-2 py-0 sm:py-0.5 text-white whitespace-nowrap bg-sidebar-accent border-none">
                       RMHP
                     </Badge>
                   )}
                 </div>
               </td>
-              <td className="px-3 py-2.5 text-sm text-foreground">${space.pricePerMonth}</td>
-              <td className="px-3 py-2.5 text-sm text-foreground">{space.homeSize}</td>
-              <td className="px-3 py-2.5 text-sm text-foreground">{space.lotSize}</td>
-              <td className="px-3 py-2.5 text-sm text-foreground">{space.bedrooms}</td>
-              <td className="px-3 py-2.5 text-sm text-foreground">{space.bathrooms}</td>
-              <td className="px-3 py-2.5">
+              <td className="px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm text-foreground whitespace-nowrap">${space.pricePerMonth}</td>
+              <td className="px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm text-foreground whitespace-nowrap">{space.homeSize}</td>
+              <td className="px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm text-foreground whitespace-nowrap">{space.lotSize}</td>
+              <td className="px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm text-foreground">{space.bedrooms}</td>
+              <td className="px-1.5 py-2 sm:px-3 sm:py-2.5 text-xs sm:text-sm text-foreground">{space.bathrooms}</td>
+              <td className="px-1.5 py-2 sm:px-3 sm:py-2.5">
                 {space.storage ? (
-                  <Badge className="text-xs px-2 py-0.5 text-white bg-primary border-none">Yes</Badge>
+                  <Badge className="text-[9px] sm:text-xs px-1 sm:px-2 py-0 sm:py-0.5 text-white bg-primary border-none">Yes</Badge>
                 ) : (
-                  <Badge variant="outline" className="text-xs px-2 py-0.5 border-border text-secondary">No</Badge>
+                  <Badge variant="outline" className="text-[9px] sm:text-xs px-1 sm:px-2 py-0 sm:py-0.5 border-border text-secondary">No</Badge>
                 )}
               </td>
-              <td className="px-3 py-2.5">
-                <Badge variant="secondary" className="text-xs px-2 py-0.5 bg-muted text-foreground border-none">
+              <td className="px-1.5 py-2 sm:px-3 sm:py-2.5">
+                <Badge variant="secondary" className="text-[9px] sm:text-xs px-1 sm:px-2 py-0 sm:py-0.5 bg-muted text-foreground border-none whitespace-nowrap">
                   {space.parkingType.replace(' Parking', '')}
                 </Badge>
               </td>
-              <td className="px-3 py-2.5 text-right" onClick={(e) => e.stopPropagation()}>
+              <td className="px-1.5 py-2 sm:px-3 sm:py-2.5 text-right" onClick={(e) => e.stopPropagation()}>
                 <button
                   onClick={() => onEdit(space)}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 text-white text-sm rounded-lg transition-colors bg-secondary hover:bg-secondary/85"
+                  className="inline-flex items-center justify-center gap-1.5 px-2 py-1.5 sm:px-3 text-white text-sm rounded-lg transition-colors bg-secondary hover:bg-secondary/85"
                 >
-                  <Edit2 className="w-3.5 h-3.5" />
-                  <span>Edit</span>
+                  <Edit2 className="w-3.5 h-3.5 shrink-0" />
+                  <span className="hidden sm:inline">Edit</span>
                 </button>
               </td>
             </tr>
