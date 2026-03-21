@@ -101,10 +101,7 @@ export function DeleteImageModal({ isOpen, onClose, onConfirm }: DeleteImageModa
                 <button
                   onClick={handleConfirm}
                   disabled={!isDeleteEnabled}
-                  className="flex-1 px-4 py-3 text-white rounded-xl transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ background: '#d4183d' }}
-                  onMouseEnter={e => !isDeleteEnabled ? null : ((e.currentTarget as HTMLElement).style.background = '#b91435')}
-                  onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#d4183d')}
+                  className="btn-delete flex-1"
                 >
                   Confirm Delete
                 </button>

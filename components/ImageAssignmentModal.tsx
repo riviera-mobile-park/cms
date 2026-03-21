@@ -119,7 +119,7 @@ export function ImageAssignmentModal({
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed bottom-0 lg:top-1/2 lg:-translate-y-1/2 left-0 right-0 lg:left-1/2 lg:-translate-x-1/2 lg:right-auto bg-white rounded-t-3xl lg:rounded-2xl shadow-2xl z-50 max-h-[90vh] lg:max-h-[85vh] overflow-hidden flex flex-col w-full lg:w-[520px]"
+            className="fixed bottom-0 lg:top-1/2 lg:-translate-y-1/2 left-0 right-0 lg:left-1/2 lg:-translate-x-1/2 lg:right-auto bg-white rounded-t-3xl lg:rounded-2xl shadow-2xl z-50 max-h-[90vh] lg:max-h-[75vh] overflow-hidden flex flex-col w-full lg:w-[520px]"
             style={{ border: '1px solid #D7E3E7' }}
           >
             {/* Drag Handle (mobile) */}
@@ -128,7 +128,7 @@ export function ImageAssignmentModal({
             </div>
 
             {/* Header */}
-            <div className="flex items-center justify-between px-5 pt-4 pb-3"
+            <div className="flex items-center justify-between px-4 pt-3 pb-2"
               style={{ borderBottom: '1px solid #D7E3E7' }}
             >
               <div>
@@ -149,20 +149,20 @@ export function ImageAssignmentModal({
               </button>
             </div>
 
-            {/* Scrollable Content */}
-            <div className="flex-1 overflow-y-auto px-5 py-4 space-y-5">
+            {/* Content */}
+            <div className="flex-1 px-4 py-3 space-y-3 overflow-hidden">
               {/* Thumbnail grid */}
               <div>
-                <p className="text-xs mb-2" style={{ color: '#2F6F8F' }}>Photos to upload</p>
-                <div className="flex flex-wrap gap-2">
+                <p className="text-xs mb-1.5" style={{ color: '#2F6F8F' }}>Photos to upload</p>
+                <div className="flex flex-wrap gap-1.5">
                   {previewUrls.map((url, i) => (
                     <div
                       key={i}
-                      className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 relative"
+                      className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0 relative"
                       style={{ border: '1px solid #D7E3E7' }}
                     >
                       <img src={url} alt={`Preview ${i + 1}`} className="w-full h-full object-cover" />
-                      <span className="absolute bottom-0.5 right-1 text-[9px] text-white/80 leading-tight">
+                      <span className="absolute bottom-0.5 right-0.5 text-[8px] text-white/90 leading-tight font-medium">
                         {i + 1}
                       </span>
                     </div>
@@ -171,11 +171,11 @@ export function ImageAssignmentModal({
               </div>
 
               {/* Space identification */}
-              <div className="space-y-3">
+              <div className="space-y-2">
                 <p className="text-sm" style={{ color: '#24323A' }}>
                   Which space are these photos for?
                 </p>
-                <div className="grid grid-cols-2 gap-3">
+                <div className="grid grid-cols-2 gap-2">
                   <div className="space-y-1.5">
                     <Label htmlFor="assign-space-num">Space #</Label>
                     <Input
@@ -203,7 +203,6 @@ export function ImageAssignmentModal({
                     />
                   </div>
                 </div>
-                <p className="text-[10px]" style={{ color: '#2F6F8F' }}>Fill in one — whichever applies to this home.</p>
 
                 {/* Error */}
                 {error && (
@@ -216,7 +215,7 @@ export function ImageAssignmentModal({
             </div>
 
             {/* Footer */}
-            <div className="flex gap-3 p-5" style={{ borderTop: '1px solid #D7E3E7', background: '#F7FAFB' }}>
+            <div className="flex gap-3 p-4" style={{ borderTop: '1px solid #D7E3E7', background: '#F7FAFB' }}>
               {showCancelConfirm ? (
                 <div className="flex-1 flex flex-col gap-2">
                   <p className="text-sm text-center" style={{ color: '#24323A' }}>Discard unsaved changes?</p>

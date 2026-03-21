@@ -224,10 +224,7 @@ export function HomePhotosSection({ spaces, onDeleteImage }: HomePhotosSectionPr
                       </div>
                       <button
                         onClick={handleDeleteClick}
-                        className="w-full px-4 py-3 text-white rounded-xl transition-colors"
-                        style={{ background: '#d4183d' }}
-                        onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = '#b91435')}
-                        onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = '#d4183d')}
+                        className="btn-delete w-full"
                       >
                         Delete Image
                       </button>
