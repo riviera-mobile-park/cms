@@ -152,11 +152,11 @@
 }
 
 /* Landscape-only table compaction — portrait untouched */
-@media (orientation: landscape) and (max-width: 1023px) {
+@media (orientation: landscape) and (max-width: 1279px) {
   .landscape-table th,
   .landscape-table td {
-    padding-left: 0.125rem;
-    padding-right: 0.125rem;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
     font-size: 0.6875rem;
