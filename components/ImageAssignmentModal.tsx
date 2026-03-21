@@ -119,7 +119,7 @@ export function ImageAssignmentModal({
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed bottom-0 lg:top-1/2 lg:-translate-y-1/2 left-0 right-0 lg:left-1/2 lg:-translate-x-1/2 lg:right-auto bg-white rounded-t-3xl lg:rounded-2xl shadow-2xl z-50 max-h-[90vh] lg:max-h-[75vh] overflow-hidden flex flex-col w-full lg:w-[520px]"
+            className="fixed bottom-0 lg:top-1/2 lg:-translate-y-1/2 left-0 right-0 lg:left-1/2 lg:-translate-x-1/2 lg:right-auto bg-white rounded-t-3xl lg:rounded-2xl shadow-2xl z-50 max-h-[90vh] lg:max-h-[75vh] overflow-hidden flex flex-col w-full lg:max-w-[520px] lg:min-w-[min(520px,90vw)]"
             style={{ border: '1px solid #D7E3E7' }}
           >
             {/* Drag Handle (mobile) */}

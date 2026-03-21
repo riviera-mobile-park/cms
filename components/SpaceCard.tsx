@@ -1,5 +1,5 @@
 // SpaceCard.tsx
-// Mobile card view for individual spaces
+// Card view for individual spaces
 
 'use client';
 
@@ -27,55 +27,43 @@ export function SpaceCard({
 }: SpaceCardProps) {
   return (
     <div
-      className="bg-white rounded-xl p-3 cursor-pointer transition-all"
-      style={{ border: '1px solid #D7E3E7', boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}
+      className="bg-card rounded-xl p-3 cursor-pointer transition-all border border-border shadow-md hover:border-primary"
       onClick={() => onPreview?.(space)}
-      onMouseEnter={e => ((e.currentTarget as HTMLElement).style.borderColor = '#7FD1C2')}
-      onMouseLeave={e => ((e.currentTarget as HTMLElement).style.borderColor = '#D7E3E7')}
     >
       <div className="flex items-start gap-2">
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-1.5">
-            <h3 className="heading text-base" style={{ color: '#24323A' }}>{space.spaceNumber}</h3>
+            <h3 className="heading text-base text-foreground">{space.spaceNumber}</h3>
             <button
               onClick={(e) => { e.stopPropagation(); onEdit(space); }}
-              className="p-1.5 rounded-lg transition-colors flex-shrink-0"
-              style={{ color: '#2F6F8F' }}
-              onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#E8F6F3')}
-              onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = 'transparent')}
+              className="p-1.5 rounded-lg transition-colors flex-shrink-0 text-secondary hover:bg-muted"
               aria-label="Edit space"
             >
               <Edit2 className="w-4 h-4" />
             </button>
           </div>
           <div className="flex flex-wrap gap-1.5">
-            <Badge variant="secondary" className="text-xs px-2 py-0.5"
-              style={{ background: '#E8F6F3', color: '#24323A', border: 'none' }}>
+            <Badge variant="secondary" className="text-xs px-2 py-0.5 bg-muted text-foreground border-none">
               ${space.pricePerMonth}/mo
             </Badge>
-            <Badge variant="secondary" className="text-xs px-2 py-0.5"
-              style={{ background: '#E8F6F3', color: '#24323A', border: 'none' }}>
+            <Badge variant="secondary" className="text-xs px-2 py-0.5 bg-muted text-foreground border-none">
               {space.homeSize}
             </Badge>
-            <Badge variant="secondary" className="text-xs px-2 py-0.5"
-              style={{ background: '#E8F6F3', color: '#24323A', border: 'none' }}>
+            <Badge variant="secondary" className="text-xs px-2 py-0.5 bg-muted text-foreground border-none">
               {space.lotSize}
             </Badge>
-            <Badge variant="secondary" className="text-xs px-2 py-0.5"
-              style={{ background: '#E8F6F3', color: '#24323A', border: 'none' }}>
+            <Badge variant="secondary" className="text-xs px-2 py-0.5 bg-muted text-foreground border-none">
               {space.bedrooms} bed
             </Badge>
-            <Badge variant="secondary" className="text-xs px-2 py-0.5"
-              style={{ background: '#E8F6F3', color: '#24323A', border: 'none' }}>
+            <Badge variant="secondary" className="text-xs px-2 py-0.5 bg-muted text-foreground border-none">
               {space.bathrooms} bath
             </Badge>
             {space.storage && (
-              <Badge className="text-xs px-2 py-0.5 text-white" style={{ background: '#7FD1C2', border: 'none' }}>
+              <Badge className="text-xs px-2 py-0.5 text-white bg-primary border-none">
                 Storage
               </Badge>
             )}
-            <Badge variant="outline" className="text-xs px-2 py-0.5"
-              style={{ borderColor: '#D7E3E7', color: '#2F6F8F' }}>
+            <Badge variant="outline" className="text-xs px-2 py-0.5 border-border text-secondary">
               {space.parkingType}
             </Badge>
           </div>
@@ -84,10 +72,10 @@ export function SpaceCard({
           {(space.forSale || space.byRmhp) && (
             <div className="flex items-center gap-1.5 mt-1.5">
               {space.forSale && (
-                <Badge className="text-xs px-2 py-0.5" style={{ background: '#7FD1C2', color: '#1F4E63', border: 'none' }}>For Sale</Badge>
+                <Badge className="text-xs px-2 py-0.5 bg-primary text-sidebar-accent border-none">For Sale</Badge>
               )}
               {space.byRmhp && (
-                <Badge className="text-xs px-2 py-0.5 text-white" style={{ background: '#1F4E63', border: 'none' }}>RMHP</Badge>
+                <Badge className="text-xs px-2 py-0.5 text-white bg-sidebar-accent border-none">RMHP</Badge>
               )}
             </div>
           )}
@@ -104,8 +92,7 @@ export function SpaceCard({
                 />
                 <label
                   htmlFor={`for-sale-${space.id}`}
-                  className="text-[10px] whitespace-nowrap cursor-pointer leading-tight"
-                  style={{ color: '#2F6F8F' }}
+                  className="text-[10px] whitespace-nowrap cursor-pointer leading-tight text-secondary"
                 >
                   For Sale
                 </label>
@@ -119,8 +106,7 @@ export function SpaceCard({
                 />
                 <label
                   htmlFor={`by-rmhp-${space.id}`}
-                  className="text-[10px] whitespace-nowrap cursor-pointer leading-tight"
-                  style={{ color: '#2F6F8F' }}
+                  className="text-[10px] whitespace-nowrap cursor-pointer leading-tight text-secondary"
                 >
                   RMHP
                 </label>

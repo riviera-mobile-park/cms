@@ -6,7 +6,6 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { Space } from '@/data/spaces';
-import { SpaceCard } from '@/components/SpaceCard';
 import { SpaceTable } from '@/components/SpaceTable';
 import { EditSpaceModal } from '@/components/EditSpaceModal';
 import { SpacePreviewModal } from '@/components/SpacePreviewModal';
@@ -58,23 +57,23 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
     <div className="space-y-4">
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="heading text-3xl mb-1" style={{ color: '#24323A' }}>All Spaces</h1>
-          <p className="text-sm" style={{ color: '#2F6F8F' }}>
+          <h1 className="heading text-3xl mb-1 text-foreground">All Spaces</h1>
+          <p className="text-sm text-secondary">
             Manage all mobile home spaces at Riviera Mobile Home Park
           </p>
         </div>
-        <Button 
-          onClick={handleAddHome}
-          className="gap-2"
-          style={{ background: '#2F6F8F' }}
-        >
+        <Button onClick={handleAddHome} className="gap-2 bg-secondary">
           <Plus className="h-4 w-4" />
           Add Home
         </Button>
       </div>
 
       {/* Table View */}
+<<<<<<< HEAD
       <div className="bg-white rounded-xl" style={{ border: '1px solid #D7E3E7', boxShadow: '0 4px 12px rgba(0,0,0,0.04)' }}>
+=======
+      <div className="bg-card rounded-xl overflow-hidden border border-border shadow-md">
+>>>>>>> e5f8df0881d8fac0010d7a8ae508087201a2d75c
         <SpaceTable
           spaces={sortedSpaces}
           onEdit={setEditingSpace}
@@ -85,6 +84,7 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
         />
       </div>
 
+<<<<<<< HEAD
       {/* Mobile Card View - only for xs screens */}
       <div className="md:hidden space-y-2">
         {sortedSpaces.map((space) => (
@@ -100,6 +100,8 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
         ))}
       </div>
 
+=======
+>>>>>>> e5f8df0881d8fac0010d7a8ae508087201a2d75c
       {/* Edit Modal */}
       <EditSpaceModal
         space={editingSpace}

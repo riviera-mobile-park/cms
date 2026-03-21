@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { Space } from '@/data/spaces';
-import { SpaceCard } from '@/components/SpaceCard';
 import { SpaceTable } from '@/components/SpaceTable';
 import { EditSpaceModal } from '@/components/EditSpaceModal';
 import { SpacePreviewModal } from '@/components/SpacePreviewModal';
@@ -21,20 +20,21 @@ export function HomesForSale({ spaces, onUpdateSpace }: HomesForSaleProps) {
   return (
     <div className="space-y-4">
       <div>
-        <h1 className="heading text-3xl mb-1" style={{ color: '#24323A' }}>Homes for Sale</h1>
-        <p className="text-sm" style={{ color: '#2F6F8F' }}>
+        <h1 className="heading text-3xl mb-1 text-foreground">Homes for Sale</h1>
+        <p className="text-sm text-secondary">
           All mobile home spaces currently available for purchase
         </p>
       </div>
 
       {forSaleSpaces.length === 0 ? (
-        <div className="bg-white rounded-xl p-8 text-center" style={{ border: '1px solid #D7E3E7', boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}>
-          <p className="text-base" style={{ color: '#2F6F8F' }}>No homes currently for sale</p>
-          <p className="text-sm mt-1" style={{ color: '#2F6F8F' }}>
+        <div className="bg-card rounded-xl p-8 text-center border border-border shadow-md">
+          <p className="text-base text-secondary">No homes currently for sale</p>
+          <p className="text-sm mt-1 text-secondary">
             Check "For Sale" and leave "RMHP" unchecked in Spaces to list homes here
           </p>
         </div>
       ) : (
+<<<<<<< HEAD
         <>
           {/* Table View */}
           <div className="bg-white rounded-xl" style={{ border: '1px solid #D7E3E7', boxShadow: '0 4px 12px rgba(0,0,0,0.04)' }}>
@@ -59,6 +59,16 @@ export function HomesForSale({ spaces, onUpdateSpace }: HomesForSaleProps) {
             ))}
           </div>
         </>
+=======
+        <div className="bg-card rounded-xl overflow-hidden border border-border shadow-md">
+          <SpaceTable
+            spaces={forSaleSpaces}
+            onEdit={setEditingSpace}
+            onPreview={setPreviewingSpace}
+            showCheckboxes={false}
+          />
+        </div>
+>>>>>>> e5f8df0881d8fac0010d7a8ae508087201a2d75c
       )}
 
       <EditSpaceModal

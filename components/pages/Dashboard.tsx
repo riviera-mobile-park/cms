@@ -168,15 +168,15 @@ export function Dashboard({ spaces, soldHistory }: DashboardProps) {
   const today = getFormattedToday();
 
   return (
-    <div className="space-y-6 max-w-[1600px]">
+    <div className="flex flex-col space-y-4 md:space-y-6 w-full max-w-[1600px] mx-auto">
       {/* Welcome Section */}
       <Card className="bg-muted border border-border">
-        <div className="px-6 py-6">
+        <div className="px-4 md:px-6 py-4 md:py-6">
           <div>
-            <h1 className="heading text-3xl leading-tight text-foreground">
+            <h1 className="heading text-2xl md:text-3xl leading-tight text-foreground">
               {getGreeting()}!
             </h1>
-            <span className="inline-block mt-3 text-xs px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">
+            <span className="inline-block mt-2 md:mt-3 text-xs px-3 py-1.5 rounded-full bg-secondary text-secondary-foreground">
               {today}
             </span>
           </div>
@@ -184,7 +184,7 @@ export function Dashboard({ spaces, soldHistory }: DashboardProps) {
       </Card>
 
       {/* Statistics Grid */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4">
         <StatCard 
           icon={Home} 
           label="Our Homes for Sale" 
