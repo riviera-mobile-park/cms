@@ -138,7 +138,7 @@ function AlertDialogCancel({
     <AlertDialogPrimitive.Cancel
       className={cn(
         "border bg-background text-foreground rounded-md px-4 py-2 text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50",
-        "hover:bg-[#d4183d] hover:border-[#d4183d] hover:text-white active:bg-[#d4183d] active:border-[#d4183d] active:text-white",
+        "hover:bg-[#d4183d] hover:border-[#d4183d] hover:text-white active:bg-[#d4183d] active:border-[#d4183d] active:text-white focus:bg-[#d4183d] focus:border-[#d4183d] focus:text-white",
         className
       )}
       {...props}
