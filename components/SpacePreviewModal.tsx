@@ -4,7 +4,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { X, Home } from 'lucide-react';
+import { Home } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Space } from '@/data/spaces';
 import { Badge } from '@/components/ui/badge';
@@ -27,6 +27,11 @@ export function SpacePreviewModal({ space, isOpen, onClose }: SpacePreviewModalP
   const images = space.images ?? [];
   const hasImages = images.length > 0;
 
+  const statusClass =
+    space.status === 'Available' ? 'border-primary text-secondary' :
+    space.status === 'Pending'   ? 'border-amber-400 text-amber-600' :
+                                   'border-border text-secondary';
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -45,19 +50,16 @@ export function SpacePreviewModal({ space, isOpen, onClose }: SpacePreviewModalP
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed bottom-0 lg:top-1/2 lg:-translate-y-1/2 left-0 right-0 lg:left-[calc(50%+7.5rem)] lg:-translate-x-1/2 lg:right-auto bg-white rounded-t-3xl lg:rounded-2xl shadow-2xl z-50 max-h-[90vh] lg:h-[95vh] overflow-hidden flex flex-col w-full lg:w-[calc(100vw-17rem)]"
-            style={{ border: '1px solid #D7E3E7' }}
+            className="fixed bottom-0 lg:top-1/2 lg:-translate-y-1/2 left-0 right-0 lg:left-[calc(50%+7.5rem)] lg:-translate-x-1/2 lg:right-auto bg-card rounded-t-3xl lg:rounded-2xl shadow-2xl z-50 max-h-[90vh] lg:h-[95vh] overflow-hidden flex flex-col w-full lg:w-[calc(100vw-17rem)] border border-border"
           >
             {/* Drag Handle (mobile) */}
             <div className="lg:hidden flex justify-center pt-2 pb-1">
-              <div className="w-12 h-1.5 rounded-full" style={{ background: '#D7E3E7' }} />
+              <div className="w-12 h-1.5 rounded-full bg-border" />
             </div>
 
             {/* Header */}
-            <div className="flex items-center justify-between px-5 pt-4 pb-3"
-              style={{ borderBottom: '1px solid #D7E3E7' }}
-            >
-              <h2 className="heading text-xl" style={{ color: '#24323A' }}>Space {space.spaceNumber}</h2>
+            <div className="flex items-center justify-between px-5 pt-4 pb-3 border-b border-border">
+              <h2 className="heading text-xl text-foreground">Space {space.spaceNumber}</h2>
             </div>
 
             {/* Scrollable Content */}
@@ -72,40 +74,27 @@ export function SpacePreviewModal({ space, isOpen, onClose }: SpacePreviewModalP
                   { text: `${space.bedrooms} bed` },
                   { text: `${space.bathrooms} bath` },
                 ].map(({ text }) => (
-                  <Badge key={text} variant="secondary" className="text-xs px-2.5 py-1"
-                    style={{ background: '#E8F6F3', color: '#24323A', border: 'none' }}>
+                  <Badge key={text} variant="secondary" className="text-xs px-2.5 py-1 bg-muted text-foreground border-none">
                     {text}
                   </Badge>
                 ))}
                 {space.storage && (
-                  <Badge className="text-xs px-2.5 py-1 text-white" style={{ background: '#7FD1C2', border: 'none' }}>
+                  <Badge className="text-xs px-2.5 py-1 text-white bg-primary border-none">
                     Storage
                   </Badge>
                 )}
-                <Badge variant="outline" className="text-xs px-2.5 py-1"
-                  style={{ borderColor: '#D7E3E7', color: '#2F6F8F' }}>
+                <Badge variant="outline" className="text-xs px-2.5 py-1 border-border text-secondary">
                   {space.parkingType}
                 </Badge>
                 {space.forSale && (
-                  <Badge className="bg-amber-500 text-white text-xs px-2.5 py-1">For Sale</Badge>
+                  <Badge className="text-xs px-2.5 py-1 bg-primary text-sidebar-accent border-none">For Sale</Badge>
                 )}
                 {space.byRmhp && (
-                  <Badge className="text-xs px-2.5 py-1 text-white" style={{ background: '#1F4E63', border: 'none' }}>
+                  <Badge className="text-xs px-2.5 py-1 text-white bg-sidebar-accent border-none">
                     RMHP
                   </Badge>
                 )}
-                <Badge
-                  variant="outline"
-                  className="text-xs px-2.5 py-1"
-                  style={{
-                    borderColor: space.status === 'Available' ? '#7FD1C2'
-                      : space.status === 'Pending' ? '#F59E0B'
-                      : '#D7E3E7',
-                    color: space.status === 'Available' ? '#2F6F8F'
-                      : space.status === 'Pending' ? '#D97706'
-                      : '#2F6F8F',
-                  }}
-                >
+                <Badge variant="outline" className={`text-xs px-2.5 py-1 ${statusClass}`}>
                   {space.status}
                 </Badge>
               </div>
@@ -125,21 +114,21 @@ export function SpacePreviewModal({ space, isOpen, onClose }: SpacePreviewModalP
                   ...(space.byRmhp ? [{ label: 'Listed by', value: 'RMHP' }] : []),
                 ];
                 return (
-                  <div className="hidden lg:block rounded-xl overflow-hidden" style={{ border: '1px solid #D7E3E7' }}>
+                  <div className="hidden lg:block rounded-xl overflow-hidden border border-border">
                     <table className="w-full text-sm">
-                      <thead style={{ background: '#F7FAFB', borderBottom: '1px solid #D7E3E7' }}>
+                      <thead className="bg-background border-b border-border">
                         <tr>
                           {cols.map(({ label }) => (
-                            <th key={label} className="px-4 py-2 text-left font-medium whitespace-nowrap" style={{ color: '#2F6F8F' }}>
+                            <th key={label} className="px-4 py-2 text-left font-medium whitespace-nowrap text-secondary">
                               {label}
                             </th>
                           ))}
                         </tr>
                       </thead>
                       <tbody>
-                        <tr style={{ background: '#FFFFFF' }}>
+                        <tr className="bg-card">
                           {cols.map(({ label, value }) => (
-                            <td key={label} className="px-4 py-3 whitespace-nowrap" style={{ color: '#24323A' }}>
+                            <td key={label} className="px-4 py-3 whitespace-nowrap text-foreground">
                               {value}
                             </td>
                           ))}
@@ -153,8 +142,8 @@ export function SpacePreviewModal({ space, isOpen, onClose }: SpacePreviewModalP
               {/* About */}
               {space.aboutHome && (
                 <div>
-                  <p className="text-xs mb-1" style={{ color: '#2F6F8F' }}>About this home</p>
-                  <p className="text-sm leading-relaxed" style={{ color: '#24323A' }}>{space.aboutHome}</p>
+                  <p className="text-xs mb-1 text-secondary">About this home</p>
+                  <p className="text-sm leading-relaxed text-foreground">{space.aboutHome}</p>
                 </div>
               )}
 
@@ -162,9 +151,7 @@ export function SpacePreviewModal({ space, isOpen, onClose }: SpacePreviewModalP
               <div>
                 {hasImages ? (
                   <>
-                    <div className="rounded-xl overflow-hidden aspect-[4/3] w-full lg:max-w-sm lg:mx-auto"
-                      style={{ background: '#E8F6F3' }}
-                    >
+                    <div className="rounded-xl overflow-hidden aspect-[4/3] w-full lg:max-w-sm lg:mx-auto bg-muted">
                       <img
                         src={images[activeImage]}
                         alt={`Space ${space.spaceNumber} photo ${activeImage + 1}`}
@@ -177,11 +164,9 @@ export function SpacePreviewModal({ space, isOpen, onClose }: SpacePreviewModalP
                           <button
                             key={i}
                             onClick={() => setActiveImage(i)}
-                            className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all"
-                            style={{
-                              borderColor: i === activeImage ? '#7FD1C2' : 'transparent',
-                              opacity: i === activeImage ? 1 : 0.6,
-                            }}
+                            className={`flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden border-2 transition-all ${
+                              i === activeImage ? 'border-primary opacity-100' : 'border-transparent opacity-60'
+                            }`}
                           >
                             <img src={img} alt={`Thumb ${i + 1}`} className="w-full h-full object-cover" />
                           </button>
@@ -190,27 +175,24 @@ export function SpacePreviewModal({ space, isOpen, onClose }: SpacePreviewModalP
                     )}
                   </>
                 ) : (
-                  <div className="rounded-xl aspect-[4/3] flex flex-col items-center justify-center gap-2 lg:max-w-sm lg:mx-auto"
-                    style={{ background: '#E8F6F3' }}
-                  >
-                    <Home className="w-8 h-8" style={{ color: '#7FD1C2' }} />
-                    <p className="text-xs" style={{ color: '#2F6F8F' }}>No photos yet</p>
+                  <div className="rounded-xl aspect-[4/3] flex flex-col items-center justify-center gap-2 lg:max-w-sm lg:mx-auto bg-muted">
+                    <Home className="w-8 h-8 text-primary" />
+                    <p className="text-xs text-secondary">No photos yet</p>
                   </div>
                 )}
               </div>
             </div>
+
             {/* Footer */}
-            <div className="flex justify-end gap-3 p-6" style={{ borderTop: '1px solid #D7E3E7', background: '#F7FAFB' }}>
+            <div className="flex justify-end gap-3 p-6 border-t border-border bg-background">
               <button
                 onClick={onClose}
-                className="px-4 py-3 text-white rounded-xl transition-colors text-sm"
-                style={{ background: '#7FD1C2' }}
-                onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#5FBCAC')}
-                onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#7FD1C2')}
+                className="px-4 py-3 text-white rounded-xl transition-colors text-sm bg-primary hover:bg-primary/85"
               >
                 Done
               </button>
-            </div>          </motion.div>
+            </div>
+          </motion.div>
         </>
       )}
     </AnimatePresence>

@@ -6,7 +6,6 @@
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { Space } from '@/data/spaces';
-import { SpaceCard } from '@/components/SpaceCard';
 import { SpaceTable } from '@/components/SpaceTable';
 import { EditSpaceModal } from '@/components/EditSpaceModal';
 import { SpacePreviewModal } from '@/components/SpacePreviewModal';
@@ -58,23 +57,19 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
     <div className="space-y-4">
       <div className="flex items-start justify-between">
         <div>
-          <h1 className="heading text-3xl mb-1" style={{ color: '#24323A' }}>All Spaces</h1>
-          <p className="text-sm" style={{ color: '#2F6F8F' }}>
+          <h1 className="heading text-3xl mb-1 text-foreground">All Spaces</h1>
+          <p className="text-sm text-secondary">
             Manage all mobile home spaces at Riviera Mobile Home Park
           </p>
         </div>
-        <Button 
-          onClick={handleAddHome}
-          className="gap-2"
-          style={{ background: '#2F6F8F' }}
-        >
+        <Button onClick={handleAddHome} className="gap-2 bg-secondary">
           <Plus className="h-4 w-4" />
           Add Home
         </Button>
       </div>
 
-      {/* Desktop Table View */}
-      <div className="hidden lg:block bg-white rounded-xl overflow-hidden" style={{ border: '1px solid #D7E3E7', boxShadow: '0 6px 18px rgba(0,0,0,0.06)' }}>
+      {/* Table View */}
+      <div className="bg-card rounded-xl overflow-hidden border border-border shadow-md">
         <SpaceTable
           spaces={sortedSpaces}
           onEdit={setEditingSpace}
@@ -83,21 +78,6 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
           onToggleByRmhp={onToggleByRmhp}
           showCheckboxes
         />
-      </div>
-
-      {/* Mobile Card View */}
-      <div className="lg:hidden space-y-2">
-        {sortedSpaces.map((space) => (
-          <SpaceCard
-            key={space.id}
-            space={space}
-            onEdit={setEditingSpace}
-            onPreview={setPreviewingSpace}
-            onToggleForSale={onToggleForSale}
-            onToggleByRmhp={onToggleByRmhp}
-            showCheckboxes
-          />
-        ))}
       </div>
 
       {/* Edit Modal */}
