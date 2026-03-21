@@ -239,7 +239,7 @@ export function Dashboard({ spaces, soldHistory }: DashboardProps) {
                 </p>
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
+                  <table className="w-full text-sm landscape-table">
                     <thead>
                       <tr>
                         <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium whitespace-nowrap text-secondary border-b border-border bg-muted/30">#</th>
@@ -280,7 +280,7 @@ export function Dashboard({ spaces, soldHistory }: DashboardProps) {
                 </p>
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="w-full text-sm">
+                  <table className="w-full text-sm landscape-table">
                     <thead>
                       <tr>
                         <th className="px-1 py-2 lg:px-3 text-left text-xs font-medium whitespace-nowrap text-secondary border-b border-border bg-muted/30">#</th>

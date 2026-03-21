@@ -29,7 +29,7 @@ export function SpaceTable({
 }: SpaceTableProps) {
   return (
     <div className="w-full overflow-x-auto">
-      <table className="w-full">
+      <table className="w-full landscape-table">
         <thead>
           <tr className="border-b border-border">
             {showCheckboxes && (
@@ -120,7 +120,7 @@ export function SpaceTable({
                   <Badge variant="outline" className="text-xs px-2 py-0.5 border-border text-secondary">No</Badge>
                 )}
               </td>
-              <td className="px-1 py-2 lg:px-3 lg:py-2.5">
+              <td className="px-1 py-2 lg:px-3 lg:py-2.5 badge-cell">
                 <Badge variant="secondary" className="text-[9px] lg:text-xs px-1 lg:px-2 py-0 lg:py-0.5 bg-muted text-foreground border-none whitespace-nowrap">
                   {space.parkingType.replace(' Parking', '')}
                 </Badge>
@@ -128,7 +128,7 @@ export function SpaceTable({
               <td className="px-1 py-2 lg:px-3 lg:py-2.5 text-right" onClick={(e) => e.stopPropagation()}>
                 <button
                   onClick={() => onEdit(space)}
-                  className="inline-flex items-center justify-center gap-1.5 px-2 py-1.5 lg:px-3 text-white text-sm rounded-lg transition-colors bg-secondary hover:bg-secondary/85"
+                  className="edit-btn inline-flex items-center justify-center gap-1.5 px-2 py-1.5 lg:px-3 text-white text-sm rounded-lg transition-colors bg-secondary hover:bg-secondary/85"
                 >
                   <Edit2 className="w-3.5 h-3.5 shrink-0" />
                   <span className="hidden lg:inline">Edit</span>
