@@ -34,33 +34,7 @@ export function HomesForSale({ spaces, onUpdateSpace }: HomesForSaleProps) {
           </p>
         </div>
       ) : (
-<<<<<<< HEAD
-        <>
-          {/* Table View */}
-          <div className="bg-white rounded-xl" style={{ border: '1px solid #D7E3E7', boxShadow: '0 4px 12px rgba(0,0,0,0.04)' }}>
-            <SpaceTable
-              spaces={forSaleSpaces}
-              onEdit={setEditingSpace}
-              onPreview={setPreviewingSpace}
-              showCheckboxes={false}
-            />
-          </div>
-
-          {/* Mobile Card View - only for xs screens */}
-          <div className="md:hidden space-y-2">
-            {forSaleSpaces.map((space) => (
-              <SpaceCard
-                key={space.id}
-                space={space}
-                onEdit={setEditingSpace}
-                onPreview={setPreviewingSpace}
-                showCheckboxes={false}
-              />
-            ))}
-          </div>
-        </>
-=======
-        <div className="bg-card rounded-xl overflow-hidden border border-border shadow-md">
+        <div className="bg-card rounded-xl border border-border shadow-md">
           <SpaceTable
             spaces={forSaleSpaces}
             onEdit={setEditingSpace}
@@ -68,7 +42,6 @@ export function HomesForSale({ spaces, onUpdateSpace }: HomesForSaleProps) {
             showCheckboxes={false}
           />
         </div>
->>>>>>> e5f8df0881d8fac0010d7a8ae508087201a2d75c
       )}
 
       <EditSpaceModal

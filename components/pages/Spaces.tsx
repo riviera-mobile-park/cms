@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { Plus } from 'lucide-react';
 import { Space } from '@/data/spaces';
 import { SpaceTable } from '@/components/SpaceTable';
+import { SpaceCard } from '@/components/SpaceCard';
 import { EditSpaceModal } from '@/components/EditSpaceModal';
 import { SpacePreviewModal } from '@/components/SpacePreviewModal';
 import { Button } from '@/components/ui/button';
@@ -69,11 +70,7 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
       </div>
 
       {/* Table View */}
-<<<<<<< HEAD
-      <div className="bg-white rounded-xl" style={{ border: '1px solid #D7E3E7', boxShadow: '0 4px 12px rgba(0,0,0,0.04)' }}>
-=======
-      <div className="bg-card rounded-xl overflow-hidden border border-border shadow-md">
->>>>>>> e5f8df0881d8fac0010d7a8ae508087201a2d75c
+      <div className="bg-card rounded-xl border border-border shadow-md">
         <SpaceTable
           spaces={sortedSpaces}
           onEdit={setEditingSpace}
@@ -84,7 +81,6 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
         />
       </div>
 
-<<<<<<< HEAD
       {/* Mobile Card View - only for xs screens */}
       <div className="md:hidden space-y-2">
         {sortedSpaces.map((space) => (
@@ -100,8 +96,6 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
         ))}
       </div>
 
-=======
->>>>>>> e5f8df0881d8fac0010d7a8ae508087201a2d75c
       {/* Edit Modal */}
       <EditSpaceModal
         space={editingSpace}
