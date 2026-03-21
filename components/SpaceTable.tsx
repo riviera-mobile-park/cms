@@ -33,20 +33,20 @@ export function SpaceTable({
         <thead>
           <tr className="border-b border-border">
             {showCheckboxes && (
-              <th className="text-left px-1.5 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary whitespace-nowrap">
+              <th className="text-left px-1 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary whitespace-nowrap">
                 Sale / RMHP
               </th>
             )}
-            <th className="text-left px-1.5 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary">#</th>
+            <th className="text-left px-1 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary">#</th>
             <th className="hidden md:table-cell text-left px-3 py-2.5 text-xs font-medium text-secondary">Listed</th>
-            <th className="text-left px-1.5 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary whitespace-nowrap">$/mo</th>
-            <th className="text-left px-1.5 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary whitespace-nowrap">Home</th>
+            <th className="text-left px-1 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary whitespace-nowrap">$/mo</th>
+            <th className="text-left px-1 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary">Home</th>
             <th className="hidden md:table-cell text-left px-3 py-2.5 text-xs font-medium text-secondary whitespace-nowrap">Lot</th>
-            <th className="text-left px-1.5 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary">Bd</th>
-            <th className="text-left px-1.5 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary">Ba</th>
+            <th className="text-left px-1 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary">Bd</th>
+            <th className="text-left px-1 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary">Ba</th>
             <th className="hidden md:table-cell text-left px-3 py-2.5 text-xs font-medium text-secondary">Stor</th>
-            <th className="text-left px-1.5 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary">Park</th>
-            <th className="text-right px-1.5 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary"></th>
+            <th className="text-left px-1 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary">Park</th>
+            <th className="text-right px-1 py-2 md:px-3 md:py-2.5 text-xs font-medium text-secondary"></th>
           </tr>
         </thead>
         <tbody>
@@ -57,8 +57,8 @@ export function SpaceTable({
               onClick={() => onPreview?.(space)}
             >
               {showCheckboxes && (
-                <td className="px-1.5 py-2 md:px-3 md:py-2.5" onClick={(e) => e.stopPropagation()}>
-                  <div className="flex items-center gap-1.5 md:gap-3">
+                <td className="px-1 py-2 md:px-3 md:py-2.5" onClick={(e) => e.stopPropagation()}>
+                  <div className="flex items-center gap-1 md:gap-3">
                     <div className="flex items-center gap-0.5 md:gap-1">
                       <Checkbox
                         checked={space.forSale}
@@ -93,7 +93,7 @@ export function SpaceTable({
                   </div>
                 </td>
               )}
-              <td className="px-1.5 py-2 md:px-3 md:py-2.5">
+              <td className="px-1 py-2 md:px-3 md:py-2.5 w-6 md:w-auto">
                 <span className="text-xs md:text-sm font-medium text-foreground">{space.spaceNumber}</span>
               </td>
               <td className="hidden md:table-cell px-3 py-2.5">
@@ -108,11 +108,11 @@ export function SpaceTable({
                   )}
                 </div>
               </td>
-              <td className="px-1.5 py-2 md:px-3 md:py-2.5 text-xs md:text-sm text-foreground whitespace-nowrap">${space.pricePerMonth}</td>
-              <td className="px-1.5 py-2 md:px-3 md:py-2.5 text-xs md:text-sm text-foreground whitespace-nowrap">{space.homeSize}</td>
+              <td className="px-1 py-2 md:px-3 md:py-2.5 text-xs md:text-sm text-foreground whitespace-nowrap">${space.pricePerMonth}</td>
+              <td className="px-1 py-2 md:px-3 md:py-2.5 text-xs md:text-sm text-foreground">{space.homeSize}</td>
               <td className="hidden md:table-cell px-3 py-2.5 text-sm text-foreground whitespace-nowrap">{space.lotSize}</td>
-              <td className="px-1.5 py-2 md:px-3 md:py-2.5 text-xs md:text-sm text-foreground">{space.bedrooms}</td>
-              <td className="px-1.5 py-2 md:px-3 md:py-2.5 text-xs md:text-sm text-foreground">{space.bathrooms}</td>
+              <td className="px-1 py-2 md:px-3 md:py-2.5 text-xs md:text-sm text-foreground">{space.bedrooms}</td>
+              <td className="px-1 py-2 md:px-3 md:py-2.5 text-xs md:text-sm text-foreground">{space.bathrooms}</td>
               <td className="hidden md:table-cell px-3 py-2.5">
                 {space.storage ? (
                   <Badge className="text-xs px-2 py-0.5 text-white bg-primary border-none">Yes</Badge>
@@ -120,12 +120,12 @@ export function SpaceTable({
                   <Badge variant="outline" className="text-xs px-2 py-0.5 border-border text-secondary">No</Badge>
                 )}
               </td>
-              <td className="px-1.5 py-2 md:px-3 md:py-2.5">
+              <td className="px-1 py-2 md:px-3 md:py-2.5">
                 <Badge variant="secondary" className="text-[9px] md:text-xs px-1 md:px-2 py-0 md:py-0.5 bg-muted text-foreground border-none whitespace-nowrap">
                   {space.parkingType.replace(' Parking', '')}
                 </Badge>
               </td>
-              <td className="px-1.5 py-2 md:px-3 md:py-2.5 text-right" onClick={(e) => e.stopPropagation()}>
+              <td className="px-1 py-2 md:px-3 md:py-2.5 text-right" onClick={(e) => e.stopPropagation()}>
                 <button
                   onClick={() => onEdit(space)}
                   className="inline-flex items-center justify-center gap-1.5 px-2 py-1.5 md:px-3 text-white text-sm rounded-lg transition-colors bg-secondary hover:bg-secondary/85"
