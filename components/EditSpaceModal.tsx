@@ -40,7 +40,6 @@ export function EditSpaceModal({ space, isOpen, onClose, onSave }: EditSpaceModa
       setFormData({ ...space });
       setCharCount(space.aboutHome.length);
       setImageOrder([...(space.images ?? [])]);
-      // Parse existing spaceNumber into the two fields
       const sn = space.spaceNumber.trim();
       const isNumeric = /^\d+$/.test(sn);
       const isUnitLetter = /^(unit\s+)?[a-zA-Z]$/i.test(sn);
@@ -51,7 +50,6 @@ export function EditSpaceModal({ space, isOpen, onClose, onSave }: EditSpaceModa
         setSpaceNumInput('');
         setUnitLetterInput(sn.replace(/^unit\s+/i, '').toUpperCase());
       } else {
-        // fallback: put whatever is there into the space number box
         setSpaceNumInput(sn);
         setUnitLetterInput('');
       }
@@ -61,7 +59,6 @@ export function EditSpaceModal({ space, isOpen, onClose, onSave }: EditSpaceModa
   if (!isOpen || !formData) return null;
 
   const handleSave = () => {
-    // Combine the two fields: prefer spaceNum; fall back to unit letter
     const combined = spaceNumInput.trim() || unitLetterInput.trim();
     onSave({ ...formData!, images: imageOrder, spaceNumber: combined });
     onClose();
@@ -109,25 +106,22 @@ export function EditSpaceModal({ space, isOpen, onClose, onSave }: EditSpaceModa
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed bottom-0 lg:top-1/2 lg:-translate-y-1/2 left-0 right-0 lg:left-[calc(50%+7.5rem)] lg:-translate-x-1/2 lg:right-auto bg-white rounded-t-3xl lg:rounded-2xl shadow-2xl z-50 max-h-[90vh] lg:h-[95vh] overflow-hidden flex flex-col w-full lg:w-[calc(100vw-17rem)]"
-            style={{ border: '1px solid #D7E3E7' }}
+            className="fixed bottom-0 lg:top-1/2 lg:-translate-y-1/2 left-0 right-0 lg:left-[calc(50%+7.5rem)] lg:-translate-x-1/2 lg:right-auto bg-card rounded-t-3xl lg:rounded-2xl shadow-2xl z-50 max-h-[90vh] lg:h-[95vh] overflow-hidden flex flex-col w-full lg:w-[calc(100vw-17rem)] border border-border"
           >
             {/* Drag Handle (mobile only) */}
             <div className="lg:hidden flex justify-center pt-2 pb-1">
-              <div className="w-12 h-1.5 rounded-full" style={{ background: '#D7E3E7' }} />
+              <div className="w-12 h-1.5 rounded-full bg-border" />
             </div>
 
             {/* Header */}
-            <div className="flex items-center justify-between p-6"
-              style={{ borderBottom: '1px solid #D7E3E7' }}
-            >
-              <h2 className="heading text-2xl" style={{ color: '#24323A' }}>Edit Space</h2>
+            <div className="flex items-center justify-between p-6 border-b border-border">
+              <h2 className="heading text-2xl text-foreground">Edit Space</h2>
             </div>
 
             {/* Form Content */}
             <div className="flex-1 overflow-y-auto p-6 space-y-4">
 
-              {/* Space Number + Unit Letter — two separate boxes */}
+              {/* Space Number + Unit Letter */}
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-2">
                   <Label htmlFor="spaceNumber">Space Number</Label>
@@ -173,7 +167,7 @@ export function EditSpaceModal({ space, isOpen, onClose, onSave }: EditSpaceModa
               <div className="space-y-2">
                 <Label htmlFor="price">Price per Month</Label>
                 <div className="relative">
-                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm" style={{ color: '#2F6F8F' }}>$</span>
+                  <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-secondary">$</span>
                   <Input id="price" type="number" value={formData.pricePerMonth}
                     onChange={(e) => setFormData({ ...formData, pricePerMonth: Number(e.target.value) })}
                     className="pl-7" />
@@ -242,8 +236,7 @@ export function EditSpaceModal({ space, isOpen, onClose, onSave }: EditSpaceModa
                   placeholder="Leave blank if not applicable" />
               </div>
 
-              {/* Divider */}
-              <div className="my-2" style={{ borderTop: '1px solid #D7E3E7' }} />
+              <div className="my-2 border-t border-border" />
 
               <div className="space-y-2">
                 <Label htmlFor="aboutHome">About This Home</Label>
@@ -252,28 +245,25 @@ export function EditSpaceModal({ space, isOpen, onClose, onSave }: EditSpaceModa
                     onChange={(e) => handleAboutHomeChange(e.target.value)}
                     placeholder="Describe the property, its features, and location..."
                     rows={6} className="resize-none pr-16" />
-                  <span className="absolute bottom-3 right-3 text-xs" style={{ color: '#2F6F8F' }}>
+                  <span className="absolute bottom-3 right-3 text-xs text-secondary">
                     {charCount}
                   </span>
                 </div>
               </div>
 
-              {/* Divider */}
-              <div className="my-2" style={{ borderTop: '1px solid #D7E3E7' }} />
+              <div className="my-2 border-t border-border" />
 
               {/* Photos */}
               <div className="space-y-2">
                 <Label>Photos</Label>
                 {imageOrder.length === 0 ? (
-                  <div className="flex flex-col items-center justify-center gap-2 rounded-xl py-8"
-                    style={{ border: '1.5px dashed #D7E3E7', background: '#E8F6F3' }}
-                  >
-                    <ImageOff className="w-6 h-6" style={{ color: '#7FD1C2' }} />
-                    <p className="text-xs" style={{ color: '#2F6F8F' }}>No photos assigned yet</p>
+                  <div className="flex flex-col items-center justify-center gap-2 rounded-xl py-8 border-[1.5px] border-dashed border-border bg-muted">
+                    <ImageOff className="w-6 h-6 text-primary" />
+                    <p className="text-xs text-secondary">No photos assigned yet</p>
                   </div>
                 ) : (
                   <>
-                    <p className="text-[10px]" style={{ color: '#2F6F8F' }}>Drag to reorder</p>
+                    <p className="text-[10px] text-secondary">Drag to reorder</p>
                     <div className="flex flex-wrap gap-2">
                       {imageOrder.map((url, i) => (
                         <div
@@ -283,8 +273,7 @@ export function EditSpaceModal({ space, isOpen, onClose, onSave }: EditSpaceModa
                           onDragEnter={() => handleDragEnter(i)}
                           onDragEnd={handleDragEnd}
                           onDragOver={(e) => e.preventDefault()}
-                          className="relative w-20 h-20 rounded-lg overflow-hidden cursor-grab active:cursor-grabbing select-none group"
-                          style={{ border: '1px solid #D7E3E7' }}
+                          className="relative w-20 h-20 rounded-lg overflow-hidden cursor-grab active:cursor-grabbing select-none group border border-border"
                         >
                           <img src={url} alt={`Photo ${i + 1}`}
                             className="w-full h-full object-cover pointer-events-none" draggable={false} />
@@ -303,17 +292,14 @@ export function EditSpaceModal({ space, isOpen, onClose, onSave }: EditSpaceModa
             </div>
 
             {/* Footer */}
-            <div className="flex gap-3 p-6" style={{ borderTop: '1px solid #D7E3E7', background: '#F7FAFB' }}>
+            <div className="flex gap-3 p-6 border-t border-border bg-background">
               {showCancelConfirm ? (
                 <div className="flex-1 flex flex-col gap-2">
-                  <p className="text-sm text-center" style={{ color: '#24323A' }}>Discard unsaved changes?</p>
+                  <p className="text-sm text-center text-foreground">Discard unsaved changes?</p>
                   <div className="flex gap-2">
                     <button
                       onClick={handleKeepEditing}
-                      className="flex-1 px-4 py-2.5 text-white rounded-xl text-sm transition-colors"
-                      style={{ background: '#7FD1C2' }}
-                      onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#5FBCAC')}
-                      onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#7FD1C2')}
+                      className="flex-1 px-4 py-2.5 text-white rounded-xl text-sm transition-colors bg-primary hover:bg-primary/85"
                     >
                       Keep Editing
                     </button>
@@ -335,10 +321,7 @@ export function EditSpaceModal({ space, isOpen, onClose, onSave }: EditSpaceModa
                   </button>
                   <button
                     onClick={handleSave}
-                    className="flex-1 px-4 py-3 text-white rounded-xl transition-colors"
-                    style={{ background: '#7FD1C2' }}
-                    onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#5FBCAC')}
-                    onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '#7FD1C2')}
+                    className="flex-1 px-4 py-3 text-white rounded-xl transition-colors bg-primary hover:bg-primary/85"
                   >
                     Save Changes
                   </button>
