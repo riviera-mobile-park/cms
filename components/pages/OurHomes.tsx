@@ -37,7 +37,7 @@ export function OurHomes({ spaces, onUpdateSpace }: OurHomesProps) {
           </p>
         </div>
       ) : (
-        <div className="bg-card rounded-xl border border-border shadow-md">
+        <div className="bg-card rounded-xl border border-border shadow-md overflow-x-auto">
           <SpaceTable
             spaces={ourHomes}
             onEdit={setEditingSpace}

@@ -184,7 +184,7 @@ export function Dashboard({ spaces, soldHistory }: DashboardProps) {
       </Card>
 
       {/* Statistics Grid */}
-      <div className="grid grid-cols-3 gap-3 md:gap-4">
+      <div className="grid grid-cols-3 gap-2 md:gap-4">
         <StatCard 
           icon={Home} 
           label="Our Homes for Sale" 

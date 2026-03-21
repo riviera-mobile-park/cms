@@ -43,22 +43,22 @@ export function StatCard({
   const isPrimary = variant === 'primary';
 
   return (
-    <Card className="p-5 flex flex-col gap-3">
+    <Card className="p-3 sm:p-4 md:p-5 flex flex-col gap-2 sm:gap-3">
       <div className="flex items-center justify-between">
-        <span className="text-xs text-secondary">{label}</span>
+        <span className="text-[10px] sm:text-xs text-secondary leading-tight">{label}</span>
         <div
-          className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${
+          className={`w-8 h-8 sm:w-9 sm:h-9 rounded-xl flex items-center justify-center flex-shrink-0 ${
             isPrimary ? 'bg-primary' : 'bg-muted'
           }`}
         >
           <Icon
-            className={`w-4 h-4 ${isPrimary ? 'text-primary-foreground' : 'text-secondary'}`}
+            className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isPrimary ? 'text-primary-foreground' : 'text-secondary'}`}
           />
         </div>
       </div>
       <div>
-        <p className="heading text-3xl text-foreground">{value}</p>
-        {subtitle && <p className="text-xs mt-0.5 text-secondary">{subtitle}</p>}
+        <p className="heading text-xl sm:text-2xl md:text-3xl text-foreground break-words">{value}</p>
+        {subtitle && <p className="text-[10px] sm:text-xs mt-0.5 text-secondary leading-tight">{subtitle}</p>}
       </div>
     </Card>
   );

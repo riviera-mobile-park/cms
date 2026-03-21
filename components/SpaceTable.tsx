@@ -52,14 +52,14 @@ export function SpaceTable({
         {spaces.map((space) => (
           <div
             key={space.id}
-            className="flex flex-col md:flex-row md:items-center px-3 py-3 md:py-2.5 gap-2 transition-colors cursor-pointer"
+            className="flex flex-row items-center px-3 py-2.5 gap-2 transition-colors cursor-pointer"
             style={{ borderBottom: '1px solid #D7E3E7' }}
             onClick={() => onPreview?.(space)}
             onMouseEnter={e => ((e.currentTarget as HTMLElement).style.background = '#F7FAFB')}
             onMouseLeave={e => ((e.currentTarget as HTMLElement).style.background = '')}
           >
             {showCheckboxes && (
-              <div className="flex-shrink-0 w-full md:w-32" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-shrink-0 w-32" onClick={(e) => e.stopPropagation()}>
                 <div className="flex items-center gap-3">
                   <div className="flex items-center gap-1">
                     <Checkbox
@@ -98,14 +98,13 @@ export function SpaceTable({
               </div>
             )}
             
-            <div className="flex flex-wrap md:flex-nowrap gap-2 md:gap-2 flex-1 items-center">
-              <div className="flex-shrink-0 w-auto md:w-20">
-                <span className="md:hidden text-[10px]" style={{ color: '#2F6F8F' }}>Space: </span>
+            <div className="flex flex-nowrap gap-2 flex-1 items-center">
+              <div className="flex-shrink-0 w-20">
                 <span className="text-sm font-medium" style={{ color: '#24323A' }}>{space.spaceNumber}</span>
               </div>
               
-              <div className="flex-shrink-0 w-auto md:w-32">
-                <div className="flex items-center gap-1 flex-wrap">
+              <div className="flex-shrink-0 w-32">
+                <div className="flex items-center gap-1 flex-nowrap">
                   {space.forSale && (
                     <Badge className="text-xs px-2 py-0.5 whitespace-nowrap bg-primary text-sidebar-accent border-none">For Sale</Badge>
                   )}
@@ -117,32 +116,27 @@ export function SpaceTable({
                 </div>
               </div>
               
-              <div className="flex-shrink-0 w-auto md:w-24 text-sm" style={{ color: '#24323A' }}>
-                <span className="md:hidden text-[10px]" style={{ color: '#2F6F8F' }}>Price: </span>
+              <div className="flex-shrink-0 w-24 text-sm" style={{ color: '#24323A' }}>
                 ${space.pricePerMonth}
               </div>
               
-              <div className="flex-shrink-0 w-auto md:w-24 text-sm" style={{ color: '#24323A' }}>
-                <span className="md:hidden text-[10px]" style={{ color: '#2F6F8F' }}>Home: </span>
+              <div className="flex-shrink-0 w-24 text-sm" style={{ color: '#24323A' }}>
                 {space.homeSize}
               </div>
               
-              <div className="flex-shrink-0 w-auto md:w-24 text-sm" style={{ color: '#24323A' }}>
-                <span className="md:hidden text-[10px]" style={{ color: '#2F6F8F' }}>Lot: </span>
+              <div className="flex-shrink-0 w-24 text-sm" style={{ color: '#24323A' }}>
                 {space.lotSize}
               </div>
               
-              <div className="flex-shrink-0 w-auto md:w-16 text-sm" style={{ color: '#24323A' }}>
-                <span className="md:hidden text-[10px]" style={{ color: '#2F6F8F' }}>Bed: </span>
+              <div className="flex-shrink-0 w-16 text-sm" style={{ color: '#24323A' }}>
                 {space.bedrooms}
               </div>
               
-              <div className="flex-shrink-0 w-auto md:w-16 text-sm" style={{ color: '#24323A' }}>
-                <span className="md:hidden text-[10px]" style={{ color: '#2F6F8F' }}>Bath: </span>
+              <div className="flex-shrink-0 w-16 text-sm" style={{ color: '#24323A' }}>
                 {space.bathrooms}
               </div>
               
-              <div className="flex-shrink-0 w-auto md:w-20">
+              <div className="flex-shrink-0 w-20">
                 {space.storage ? (
                   <Badge className="text-xs px-2 py-0.5 text-white bg-primary border-none">Yes</Badge>
                 ) : (
@@ -150,14 +144,14 @@ export function SpaceTable({
                 )}
               </div>
               
-              <div className="flex-shrink-0 w-auto md:w-24">
+              <div className="flex-shrink-0 w-24">
                 <Badge variant="secondary" className="text-xs px-2 py-0.5"
                   style={{ background: '#E8F6F3', color: '#24323A', border: 'none' }}>
                   {space.parkingType.replace(' Parking', '')}
                 </Badge>
               </div>
               
-              <div className="flex-1 flex justify-start md:justify-end min-w-[80px]" onClick={(e) => e.stopPropagation()}>
+              <div className="flex-1 flex justify-end min-w-[80px]" onClick={(e) => e.stopPropagation()}>
                 <button
                   onClick={() => onEdit(space)}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 text-white text-sm rounded-lg transition-colors bg-secondary hover:bg-secondary/85"

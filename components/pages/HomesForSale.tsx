@@ -34,7 +34,7 @@ export function HomesForSale({ spaces, onUpdateSpace }: HomesForSaleProps) {
           </p>
         </div>
       ) : (
-        <div className="bg-card rounded-xl border border-border shadow-md">
+        <div className="bg-card rounded-xl border border-border shadow-md overflow-x-auto">
           <SpaceTable
             spaces={forSaleSpaces}
             onEdit={setEditingSpace}
