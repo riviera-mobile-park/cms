@@ -38,13 +38,13 @@ export function SpaceTable({
               </th>
             )}
             <th className="text-left px-1 py-2 lg:px-3 lg:py-2.5 text-xs font-medium text-secondary">#</th>
-            <th className="hidden lg:table-cell text-left px-3 py-2.5 text-xs font-medium text-secondary">Listed</th>
+            <th className="hidden lg:table-cell landscape-col-hide text-left px-3 py-2.5 text-xs font-medium text-secondary">Listed</th>
             <th className="text-left px-1 py-2 lg:px-3 lg:py-2.5 text-xs font-medium text-secondary whitespace-nowrap">$/mo</th>
             <th className="text-left px-1 py-2 lg:px-3 lg:py-2.5 text-xs font-medium text-secondary">Home</th>
-            <th className="hidden lg:table-cell text-left px-3 py-2.5 text-xs font-medium text-secondary whitespace-nowrap">Lot</th>
+            <th className="hidden lg:table-cell landscape-col-hide text-left px-3 py-2.5 text-xs font-medium text-secondary whitespace-nowrap">Lot</th>
             <th className="text-left px-1 py-2 lg:px-3 lg:py-2.5 text-xs font-medium text-secondary">Bd</th>
             <th className="text-left px-1 py-2 lg:px-3 lg:py-2.5 text-xs font-medium text-secondary">Ba</th>
-            <th className="hidden lg:table-cell text-left px-3 py-2.5 text-xs font-medium text-secondary">Stor</th>
+            <th className="hidden lg:table-cell landscape-col-hide text-left px-3 py-2.5 text-xs font-medium text-secondary">Stor</th>
             <th className="text-left px-1 py-2 lg:px-3 lg:py-2.5 text-xs font-medium text-secondary">Park</th>
             <th className="text-right px-1 py-2 lg:px-3 lg:py-2.5 text-xs font-medium text-secondary"></th>
           </tr>
@@ -96,7 +96,7 @@ export function SpaceTable({
               <td className="px-1 py-2 lg:px-3 lg:py-2.5 w-6 lg:w-auto">
                 <span className="text-xs lg:text-sm font-medium text-foreground">{space.spaceNumber}</span>
               </td>
-              <td className="hidden lg:table-cell px-3 py-2.5">
+              <td className="hidden lg:table-cell landscape-col-hide px-3 py-2.5">
                 <div className="flex items-center gap-1 flex-nowrap">
                   {space.forSale && (
                     <Badge className="text-xs px-2 py-0.5 whitespace-nowrap bg-primary text-sidebar-accent border-none">Sale</Badge>
@@ -110,10 +110,10 @@ export function SpaceTable({
               </td>
               <td className="px-1 py-2 lg:px-3 lg:py-2.5 text-xs lg:text-sm text-foreground whitespace-nowrap">${space.pricePerMonth}</td>
               <td className="px-1 py-2 lg:px-3 lg:py-2.5 text-xs lg:text-sm text-foreground">{space.homeSize}</td>
-              <td className="hidden lg:table-cell px-3 py-2.5 text-sm text-foreground whitespace-nowrap">{space.lotSize}</td>
+              <td className="hidden lg:table-cell landscape-col-hide px-3 py-2.5 text-sm text-foreground whitespace-nowrap">{space.lotSize}</td>
               <td className="px-1 py-2 lg:px-3 lg:py-2.5 text-xs lg:text-sm text-foreground">{space.bedrooms}</td>
               <td className="px-1 py-2 lg:px-3 lg:py-2.5 text-xs lg:text-sm text-foreground">{space.bathrooms}</td>
-              <td className="hidden lg:table-cell px-3 py-2.5">
+              <td className="hidden lg:table-cell landscape-col-hide px-3 py-2.5">
                 {space.storage ? (
                   <Badge className="text-xs px-2 py-0.5 text-white bg-primary border-none">Yes</Badge>
                 ) : (
@@ -131,7 +131,7 @@ export function SpaceTable({
                   className="edit-btn inline-flex items-center justify-center gap-1.5 px-2 py-1.5 lg:px-3 text-white text-sm rounded-lg transition-colors bg-secondary hover:bg-secondary/85"
                 >
                   <Edit2 className="w-3.5 h-3.5 shrink-0" />
-                  <span className="hidden lg:inline">Edit</span>
+                  <span className="hidden lg:inline landscape-col-hide">Edit</span>
                 </button>
               </td>
             </tr>
