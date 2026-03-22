@@ -7,7 +7,7 @@ import { Upload } from '@/components/pages/Upload';
 import { useSpaces } from '@/lib/hooks/useSpaces';
 import { toast } from 'sonner';
 import { uploadImage } from '@/lib/aws/uploadImage';
-import { appendSpaceImages, removeSpaceImage } from '@/lib/client/spacesApi';
+import { appendSpaceImages } from '@/lib/client/spacesApi';
 import { toErrorMessage } from '@/lib/utils/error';
 
 export default function UploadPage() {
@@ -35,25 +35,10 @@ export default function UploadPage() {
     }
   };
 
-  const handleDeleteImage = async (spaceId: string, imageUrl: string) => {
-    try {
-      const updated = await removeSpaceImage(spaceId, imageUrl);
-      setSpace(spaceId, updated);
-
-      const label = updated.spaceNumber || 'the space';
-      toast.success(`Image removed from ${label}`);
-    } catch (error) {
-      const message = toErrorMessage(error);
-      toast.error(`Delete failed: ${message}`);
-      throw error;
-    }
-  };
-
   return (
     <Upload
       spaces={spaces}
       onImagesAssigned={handleImagesAssigned}
-      onDeleteImage={handleDeleteImage}
     />
   );
 }

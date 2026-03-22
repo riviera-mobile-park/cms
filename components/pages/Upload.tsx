@@ -7,15 +7,13 @@ import { useRef, useState } from 'react';
 import { Upload as UploadIcon } from 'lucide-react';
 import { Space } from '@/data/spaces';
 import { ImageAssignmentModal } from '@/components/ImageAssignmentModal';
-import { HomePhotosSection } from '@/components/HomePhotosSection';
 
 interface UploadProps {
   spaces: Space[];
   onImagesAssigned: (spaceId: string, images: File[]) => Promise<void> | void;
-  onDeleteImage: (spaceId: string, imageUrl: string) => Promise<void> | void;
 }
 
-export function Upload({ spaces, onImagesAssigned, onDeleteImage }: UploadProps) {
+export function Upload({ spaces, onImagesAssigned }: UploadProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [isAssigning, setIsAssigning] = useState(false);
@@ -128,9 +126,6 @@ export function Upload({ spaces, onImagesAssigned, onDeleteImage }: UploadProps)
         onFinish={handleFinish}
       />
       </div>
-
-      {/* Home Photos Management Section */}
-      <HomePhotosSection spaces={spaces} onDeleteImage={onDeleteImage} />
     </div>
   );
 }

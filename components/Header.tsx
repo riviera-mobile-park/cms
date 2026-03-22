@@ -4,7 +4,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Home, Tag, Building2, Upload, ChevronRight, LayoutDashboard, LogOut, FileSpreadsheet } from 'lucide-react';
+import { Menu, X, Home, Tag, Building2, Upload, ChevronRight, LayoutDashboard, LogOut, FileSpreadsheet, Image } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'motion/react';
@@ -18,6 +18,7 @@ const navItems = [
   { to: '/spaces', icon: Home, label: 'Spaces' },
   { to: '/homes-for-sale', icon: Tag, label: 'Homes for Sale' },
   { to: '/our-homes', icon: Building2, label: 'Our Homes for Sale' },
+  { to: '/home-photos', icon: Image, label: 'Home Photos' },
   { to: '/upload', icon: Upload, label: 'Upload' },
 ];
 
