@@ -10,6 +10,7 @@ import { SpaceTable } from '@/components/SpaceTable';
 import { EditSpaceModal } from '@/components/EditSpaceModal';
 import { SpacePreviewModal } from '@/components/SpacePreviewModal';
 import { Button } from '@/components/ui/button';
+import { CardHeader } from '@/components/ui/dashboard-cards';
 
 interface SpacesProps {
   spaces: Space[];
@@ -70,6 +71,7 @@ export function Spaces({ spaces, onSaveSpace, onToggleForSale, onToggleByRmhp }:
 
       {/* Table View */}
       <div className="bg-card rounded-xl overflow-hidden border border-border shadow-md">
+        <CardHeader title="All Spaces" badge={sortedSpaces.length} />
         <SpaceTable
           spaces={sortedSpaces}
           onEdit={setEditingSpace}

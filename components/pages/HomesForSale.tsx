@@ -5,6 +5,7 @@ import { Space } from '@/data/spaces';
 import { SpaceTable } from '@/components/SpaceTable';
 import { EditSpaceModal } from '@/components/EditSpaceModal';
 import { SpacePreviewModal } from '@/components/SpacePreviewModal';
+import { CardHeader } from '@/components/ui/dashboard-cards';
 
 interface HomesForSaleProps {
   spaces: Space[];
@@ -35,6 +36,7 @@ export function HomesForSale({ spaces, onUpdateSpace }: HomesForSaleProps) {
         </div>
       ) : (
         <div className="bg-card rounded-xl overflow-hidden border border-border shadow-md">
+          <CardHeader title="Homes for Sale" badge={forSaleSpaces.length} />
           <SpaceTable
             spaces={forSaleSpaces}
             onEdit={setEditingSpace}
